@@ -1,47 +1,46 @@
 create table if not exists course (
 cid int(4) not null auto_increment,
+id int(4) not null,
 name varchar(40) not null,
 professor varchar(30) not null,
-primary key (cid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;
+primary key (cid),
+foreign key (id) REFERENCES login(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 create table if not exists login (
 type int(1) not null,
+id int(4) not null auto_increment,
 username varchar(30) not null,
 password varchar(30) not null,
-primary key (type)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;
+primary key (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 
 create table if not exists students (
-sid int(4) not null auto_increment,
-cid int(4) not null,
-type int(1) not null,
+id int(4) not null,
 name varchar(40) not null,
-Professor varchar(30) not null,
-primary key (sid),
-foreign key (cid) REFERENCES course(cid),
-foreign key (type) REFERENCES Login(type)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;
+primary key (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 create table if not exists assisstants (
-tid int(4) not null auto_increment,
-type int(1) not null,
+id int(4) not null,
+cid int(4),
 name varchar(30) not null,
-Password varchar(30) not null,
-primary key (tid),
-foreign key (type) REFERENCES Login(type)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;
+primary key (id),
+foreign key (cid) REFERENCES course(cid)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 create table if not exists schedule (
-tid int(4) not null auto_increment,
+id int(4) not null auto_increment,
 Monday varchar(20) not null,
 Tuesday varchar(20) not null,
 Wednesday varchar(20) not null,
 Thursday varchar(20) not null,
-
 Friday varchar(20) not null,
-
-primary key (tid)
-
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=8;
+Mlocation varchar(20) not null,
+Tlocation varchar(20) not null,
+Wlocation varchar(20) not null,
+THlocation varchar(20) not null,
+Flocation varchar(20) not null,
+primary key (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
