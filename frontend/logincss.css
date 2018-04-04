@@ -1,15 +1,26 @@
-.row1 {
-
+.Header {
+	float: right;
+	padding-right: 300px;
+	padding-top: 100px;
+	text-align: center;
 }
 
-.logo {
-
+.Body {
+	background-color: #A9A9A9;
 }
 
-.login {
-
+.Logo {
+	float: left;
+	padding-left: 200px;
+	padding-top: 100px;
 }
 
-.mission {
+.Login {
+	background-color: #FFCA33;
+	float: right;
+}
 
+.Mission {
+	background-color: #FFCA33;
+	text-align: center;
 }
