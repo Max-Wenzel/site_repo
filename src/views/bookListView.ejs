@@ -90,6 +90,8 @@
           
           
           <!--/stories-->
+          <!-- This is going to loop over books to recreate the home page except it will  be the list of books -->
+          <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
           <%for (let i=0; i<books.length; i++) {%>
             <div class="row">    
               <br>
@@ -102,6 +104,7 @@
                   <div class="col-xs-9">
                     <h4><span class="label label-default"><%=books[i].author%></span></h4><h4>
                     <small style="font-family:courier,'new courier';" class="text-muted">2 hours ago  • 
+                    <!-- /books/<%=i%> allows us to access each unique book by clicking Read More -->
                     <a href="/books/<%=i%>" class="text-muted">Read More</a></small>
                     </h4></div>
                   <div class="col-xs-3"></div>

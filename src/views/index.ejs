@@ -27,6 +27,7 @@
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
+        <!-- This is using ejs (embedded javascript templating) to access the objects in nav (located in app.js) that will appear in the navigation bar. -->
         <%for (let i=0; i<nav.length; i++) {%>
           <li>
             <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
