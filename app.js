@@ -12,6 +12,7 @@ const port = process.env.PORT || 3000;
 
 // tiny gives less information for logs
 app.use(morgan('tiny'));
+// __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
@@ -24,14 +25,17 @@ const nav = [
 	{link: '/authors', title: 'Author'}
 ];
 
+// a router encapsulates all routes in one spot.
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 
+// let the app know we are using bookRouter (similar to a require)
 app.use('/books', bookRouter);
-// in express, everything works through app
+
+// (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {
-  // __dirname is the location of the current executable
   res.render(
   	'index', { 
+      // bjects to be fetched for in index.ejs for nav bar
   		nav: [
   			{link: '/books', title: 'Books'},
   			{link: '/authors', title: 'Authors'}

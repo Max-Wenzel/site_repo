@@ -2,6 +2,8 @@ const express = require('express');
 const bookRouter = express.Router();
 
 function router(nav) {
+	// hard coded book database to be replaced by MySQL.
+	// use const for variables that do not change.
 	const books=[
 		{
 			title: 'War and Peace',
@@ -46,4 +48,4 @@ function router(nav) {
 	return bookRouter;
 }
 
-	module.exports = router;
+module.exports = router;
