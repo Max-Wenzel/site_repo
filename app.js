@@ -20,27 +20,30 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist'))
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
+// define objects for navigation bar and routing
 const nav = [
-	{link: '/books', title: 'Book'},
-	{link: '/authors', title: 'Author'}
+  {link: '/dashboard', title: 'Dashboard'},
+  {link: '/calendar', title: 'Calendar'},
+  {link: '/courses', title: 'My Courses'}
 ];
 
 // a router encapsulates all routes in one spot.
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 
 // let the app know we are using bookRouter (similar to a require)
-app.use('/books', bookRouter);
+app.use('/dashboard', bookRouter);
 
 // (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {
   res.render(
   	'index', { 
-      // bjects to be fetched for in index.ejs for nav bar
+      // objects to be fetched for in index.ejs for nav bar
   		nav: [
-  			{link: '/books', title: 'Books'},
-  			{link: '/authors', title: 'Authors'}
+  			{link: '/dashboard', title: 'Dashboard'},
+  			{link: '/calendar', title: 'Calendar'},
+        {link: '/courses', title: 'My Courses'}
   		], 
-  		title: 'Library'
+  		title: 'SiTE'
   	}
   );
 });
