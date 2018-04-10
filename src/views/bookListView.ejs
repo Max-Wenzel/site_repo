@@ -33,16 +33,6 @@
           </li>
         <%}%>
       </ul>
-      <ul class="nav navbar-right navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
-          <ul class="dropdown-menu" style="padding:12px;">
-            <form class="form-inline">
-              <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
-            </form>
-          </ul>
-        </li>
-      </ul>
     </nav>
   </div>
 </header>
@@ -55,57 +45,32 @@
           <p class="lead"></p>
         </h1>
       </div>
-      <div class="col-md-5">
-        <div class="well well-lg"> 
-          <div class="row">
-            <div class="col-sm-12">
-              
-			
-            </div>
-          </div>
-        </div>
-      </div>
     </div> 
-  </div><!-- /cont -->
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="top-spacer"> </div>
-      </div>
-    </div> 
-  </div><!-- /cont -->
-  
+  </div>
 </div>
-
 
 <div class="container">
   <div class="row">
-    
     <div class="col-md-12"> 
-      
       <div class="panel">
         <div class="panel-body">
-          
-          
-          
           <!--/stories-->
-          <!-- This is going to loop over books to recreate the home page except it will  be the list of books -->
+          <!-- This is going to loop over dashboard to recreate the home page except it will  be the list of dashboard -->
           <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
-          <%for (let i=0; i<books.length; i++) {%>
+          <%for (let i=0; i<dashboard.length; i++) {%>
             <div class="row">    
               <br>
               <div class="col-md-2 col-sm-3 text-center">
                 <a class="story-title" href="#"><img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" style="width:100px;height:100px" class="img-circle"></a>
               </div>
               <div class="col-md-10 col-sm-9">
-                <h3><%=books[i].title%></h3>
+                <h3><%=dashboard[i].title%></h3>
                 <div class="row">
                   <div class="col-xs-9">
-                    <h4><span class="label label-default"><%=books[i].author%></span></h4><h4>
+                    <h4><span class="label label-default"><%=dashboard[i].author%></span></h4><h4>
                     <small style="font-family:courier,'new courier';" class="text-muted">2 hours ago  • 
-                    <!-- /books/<%=i%> allows us to access each unique book by clicking Read More -->
-                    <a href="/books/<%=i%>" class="text-muted">Read More</a></small>
+                    <!-- /dashboard/<%=i%> allows us to access each unique book by clicking Read More -->
+                    <a href="/dashboard/<%=i%>" class="text-muted">Read More</a></small>
                     </h4></div>
                   <div class="col-xs-3"></div>
                 </div>
@@ -115,34 +80,24 @@
             <hr>
           <%}%> 
           <!--/stories-->
-          
-          
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
-        
-          
+          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
       </div>
-                                                                                       
-	                                                
-                                                      
    	</div><!--/col-12-->
   </div>
-</div>
-                                                
+</div>                                    
                                                                                 
 <hr>
 
 <div class="container" id="footer">
   <div class="row">
     <div class="col col-sm-12">
-      
       <h1>Follow Us</h1>
       <div class="btn-group">
        <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
 	   <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
 	   <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
       </div>
-      
     </div>
   </div>
 </div>
@@ -161,7 +116,6 @@
           <li><i class="icon-google-plus icon-2x"></i></li>
           <li><i class="icon-pinterest icon-2x"></i></li>
         </ul>
-        
       </div>
     </div>
   </div>

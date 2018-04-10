@@ -4,7 +4,8 @@ const bookRouter = express.Router();
 function router(nav) {
 	// hard coded book database to be replaced by MySQL.
 	// use const for variables that do not change.
-	const books=[
+	// this needs to be changed so that we are getting CA/TA info from SQL
+	const dashboard=[
 		{
 			title: 'War and Peace',
 			genre: 'Historical Fiction',
@@ -28,8 +29,8 @@ function router(nav) {
 			res.render(
 				'bookListView', {
 					nav,
-		  		title: 'Library',
-		  		books
+		  		title: 'SiTE',
+		  		dashboard
 		  	}
 			);
 		});
@@ -40,8 +41,8 @@ function router(nav) {
 			res.render(
 				'bookView', {
 					nav,
-		  		title: 'Library',
-		  		book: books[id]
+		  		title: 'SiTE',
+		  		book: dashboard[id]
 		  	}
 			);
 		});
