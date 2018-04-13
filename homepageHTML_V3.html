@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title><%=title%></title>
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link href="homepageCSS.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar" role="banner">
+	<div class="container">
+		<nav class="navbar-list" role="navigation">
+			<ul class="nav navbar-nav">
+				<li>
+					<a> <img src= "site logo image" alt = "none"> </a>
+		
+		</li>
+				<li>
+					<a href ='#'> Logout </a>
+				</li>
+				<li class="dropdown">
+					<button href=".dropdown-menu" data-toggle="dropdown">
+						Classes
+					</button>
+					
+					<ul class="dropdown-menu" class="collapse">
+						<%for (let i=0; i < classListLength(student); i++) {%>
+							<li class="dropdown-item">
+								<a href= "<%=listClasses(student, i)%>" >
+								<%=classList[i].title%></a>
+							</li>
+							<div class="divider">
+						<%}%>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<div class="spacer"">  
+	<div class="container">
+		<div class="row">
+		<div class="col-md-12"><div> <!-- spacer --></div></div>
+		</div> 
+	</div>
+</div>
+
+
+<!-- PAGE BODY -->
+<div class="container">
+	<!-- TOP SECTION -->
+	<div class="row">
+  		<div class="col-md-6"> 
+
+			<!-- ACCOUNT INFORMATION -->
+			<div class="row">
+				<div class="col-md-12"> 
+				<div class="accountinfo">
+					<h2>Account Information</h2>
+
+					<table id="accountlist"> 
+						<% if (data) { %>
+						<% data.studentDisplay(function(student) { %>
+						<tr>
+							<td> Name: <%= student.name %> </td>
+							<td colspan = "2"> <%= student.picture %> </td>
+						</tr>
+						<tr>
+							<td>Number of Classes: <%= student.numClasses %></td>
+						</tr>
+						<% }) %>
+						<% } %>   
+					</table>
+  
+				</div>
+
+
+				</div>
+			</div>
+			<!-- end of ACCOUNT INFO -->
+			<hr>
+			<br>
+			<!-- CLASS INFO -->
+			<div class="row">
+				<div class="col-md-12">
+				<div class = "classinfo">
+					<h2>Class Information</h2>	
+        
+					<table>
+						<!--Need student field for "cur shown class"-->
+						<% if (data) { %>
+						<% data.classDisplay(function(student) { %>
+				
+						<tr><td>  
+						Class name: <%= student.curClassName %> 
+						</td></tr>
+				
+						<tr><td>  
+						ProfessorName: <%= student.curClassProfessor %> 								
+						</td></tr>
+				
+						<tr><td>
+						Professor Office Hours: <%=student.curClassProfOfficeHours %>
+						</td></tr> 
+				
+						<tr><td>
+						Number of enrolled students: <%= student.curClassNumStudents %>
+						</td></tr>   
+				
+						<% }) %>
+						<% } %> 
+					</table>      
+				</div>
+				</div>
+			</div>
+			<!-- end of CLASS INFO -->
+		</div>
+		
+		<!-- RESOURCES -->
+		<div class="col-md-6"> 
+		<div class="resources">
+			<h2> Resources </h2>
+
+			<!--Need student field for "cur shown class"-->
+			<!--Show data for student to curClass to classResources-->
+	
+			<% if (data) { %>
+			<% data.forEachResource(function(student) { %>
+		
+			<ul>
+				<!--Probably need to store link/href using JSON-->
+				<li> <%= student.curClassResources %> </li>
+			</ul> 
+			<% }) %>
+			<% } %>  
+		</div>
+		</div>
+		<!-- end of RESOURCES -->
+      
+	</div>
+
+	<!-- BOTTOM SECTION -->
+	<div class="row">
+	
+		<!-- SCHEDULE -->
+  		<div class="col-md-5"> 
+		<div class="schedule">
+			<h2> Schedule </h2>
+
+			<% if (data) { %>
+			<%= student.forEachDayDisplaySchedule(function(student) { %>
+			<!-- must display schedule based on specific students current class -->
+
+			<div>
+				<h6 class="day">
+					<%= student.scheduleDay %>
+				</h6>
+				<p class="TAname">
+					<= student.scheduleDayTA %>
+				</p>
+				<div class = "officeHourInfo">
+					<p class="officeHourTime">
+						<%= student.officeHourDayPresence %>
+					</p>
+				
+					<div>
+					<!--display office hour dot-->
+					<!-- FIX FIX FIX -->
+						<% if (TA.present) { %>
+							<div class= "TApresenceDot"></div>
+						<% } %>
+						<% if (TA.absent) { %>
+							<div class= "TApresenceDot"></div>
+						<% } %>
+						<% if (TA.wrongtime) { %>
+							<div class= "TApresenceDot"></div>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% }) %>     
+		</div>
+		</div>
+		<!-- end of SCHEDULE -->
+
+
+		<!-- FORUM -->
+		<div class="col-md-7"> 
+		<div class="forum">
+			<!-- display last 10 forum entries from student to class to forum table-->
+			<h2> Forum </h2>
+			<table class = "entriesbox">
+				<% if (data) { %>
+				<%= student.displayPosts(function(student) {%>
+
+				<tr class="posts"><td>
+					<%= student.forumPost %>
+					<hr size="1px" color="black" width="90%" align="center">
+				</td></tr>
+				<% } %>
+				<% }) %> 
+			</table>
+
+			<div class="newpost">
+				<fieldset>
+					<legend> Post a new comment </legend>
+					<img src="commenticon.png"
+					alt="Need Pic"height="32"width="32"style="float:left">
+					
+					<form action="">
+						<input type="text" size="50" maxlength="10000">
+					</form>
+ 
+					<input type="submit" name="forumpost" method="post" 
+					value="Post comment" align="center">
+	<!-- OR THIS??
+	<button type="submit" class="btn btn-default pull-right" <i class="glyphicon glyphicon-search"></i></button>
+	<input type="text" class="form-control pull-left" placeholder="Search">
+	-->
+				</fieldset>
+			</div>
+		</div>
+		</div>
+		<!-- end of FORUM -->
+      
+	</div>
+</div>
+<!-- end of PAGE BODY -->
+                                                                                                                
+<hr>
+<br>
+<br>
+<br>
+
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h6>CU-Boulder CSCI 3308 - Group Project</h6>
+        
+			</div>
+			<div class="col-sm-6">
+				<h6>SiTE - Student Integrated Tracking Environment</h6>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- script references -->
+	<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> -->
+	<!-- <script src="js/bootstrap.min.js"></script> -->
+</body>
+
+</html>
