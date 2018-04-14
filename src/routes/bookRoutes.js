@@ -23,11 +23,11 @@ function router(nav) {
 		}
 	];
 
-	// allows us to set up a series of routes for bookRouter
+	// routing to view the homepage
 	bookRouter.route('/')
 		.get((req, res) => {
 			res.render(
-				'bookListView', {
+				'dashboard', {
 					nav,
 		  		title: 'SiTE',
 		  		dashboard
@@ -35,11 +35,12 @@ function router(nav) {
 			);
 		});
 
+	// routing to view a single assistant
 	bookRouter.route('/:id')
 		.get((req, res) => {
 			const id = req.params.id;
 			res.render(
-				'bookView', {
+				'assistant', {
 					nav,
 		  		title: 'SiTE',
 		  		book: dashboard[id]
