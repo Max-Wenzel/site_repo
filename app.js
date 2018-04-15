@@ -27,7 +27,8 @@ const nav = [
   {link: '/courses', title: 'My Courses'}
 ];
 
-// a router encapsulates all routes in one spot.
+// a router encapsulates all routes in one spot. 
+// this passes the nav object into the require function for routing
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 
 // let the app know we are using bookRouter (similar to a require)

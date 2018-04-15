@@ -47,7 +47,9 @@ function router(nav) {
 		  	}
 			);
 		});
+	// now that we've created bookRouter, return it.
 	return bookRouter;
 }
 
+// let the other files know about router
 module.exports = router;
