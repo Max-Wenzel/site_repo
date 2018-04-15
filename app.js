@@ -17,7 +17,7 @@ const config = {
     password: 'Software1853920!',
     server: 'sdassistants.database.windows.net', // You can use 'localhost\\instance' to connect to named instance
     database: 'SDAssistants',
- 
+
     options: {
         encrypt: true // Use this if you're on Windows Azure
     }
@@ -45,7 +45,7 @@ const nav = [
   {link: '/courses', title: 'My Courses'}
 ];
 
-// a router encapsulates all routes in one spot. 
+// a router encapsulates all routes in one spot.
 // this passes the nav object into the require function for routing
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 
@@ -56,7 +56,7 @@ app.use('/dashboard', bookRouter);
 app.get('/', (req, res) => {
   res.render(
   	'index', {
-      // objects to be fetched for in index.ejs for nav bar5
+      // objects to be fetched for in index.ejs for nav bar
   		nav: [
   			{link: '/dashboard', title: 'Dashboard'},
   			{link: '/calendar', title: 'Calendar'},
