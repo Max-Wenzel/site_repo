@@ -1,0 +1,1 @@
+CREATE TABLE assistants (full_name varchar(255), class varchar(255));
