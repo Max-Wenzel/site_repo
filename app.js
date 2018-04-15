@@ -36,13 +36,13 @@ app.use('/dashboard', bookRouter);
 // (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {
   res.render(
-  	'index', { 
-      // objects to be fetched for in index.ejs for nav bar
+  	'index', {
+      // objects to be fetched for in index.ejs for nav bar5
   		nav: [
   			{link: '/dashboard', title: 'Dashboard'},
   			{link: '/calendar', title: 'Calendar'},
         {link: '/courses', title: 'My Courses'}
-  		], 
+  		],
   		title: 'SiTE'
   	}
   );
