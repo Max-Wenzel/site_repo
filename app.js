@@ -25,7 +25,8 @@ const config = {
 
 // use config to open up connection, returns a promise
 // catch deals with error handling
-sql.connect(config).catch(err => debug(err));
+// .catch(err => debug(err)) for some reason always throws an error???
+sql.connect(config);
 
 // tiny gives less information for logs
 app.use(morgan('tiny'));
