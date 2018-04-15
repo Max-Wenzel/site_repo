@@ -4,11 +4,29 @@ const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
+const sql = require('mssql');
 
 // stuff outside of requires
 const app = express();
 // attempt PORT, if failed then use port 3000
 const port = process.env.PORT || 3000;
+
+// configuration for mssql
+const config = {
+    user: 'site',
+    password: 'Software1853920!',
+    server: 'sdassistants.database.windows.net', // You can use 'localhost\\instance' to connect to named instance
+    database: 'SDAssistants',
+ 
+    options: {
+        encrypt: true // Use this if you're on Windows Azure
+    }
+};
+
+// use config to open up connection, returns a promise
+// catch deals with error handling
+// .catch(err => debug(err)) for some reason always throws an error???
+sql.connect(config);
 
 // tiny gives less information for logs
 app.use(morgan('tiny'));
@@ -27,7 +45,8 @@ const nav = [
   {link: '/courses', title: 'My Courses'}
 ];
 
-// a router encapsulates all routes in one spot.
+// a router encapsulates all routes in one spot. 
+// this passes the nav object into the require function for routing
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 
 // let the app know we are using bookRouter (similar to a require)
