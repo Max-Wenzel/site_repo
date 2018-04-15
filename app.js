@@ -5,6 +5,8 @@ const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
 const sql = require('mssql');
+const expressSession = require('express-session');
+const expressValidator = require('express-validator');
 
 // stuff outside of requires
 const app = express();
