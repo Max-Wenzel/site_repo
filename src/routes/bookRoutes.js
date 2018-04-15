@@ -1,5 +1,8 @@
 const express = require('express');
 const bookRouter = express.Router();
+const sql = require('mssql');
+// pass in bookRoutes as argument for debug
+const debug = require('debug')('app:bookRoutes');
 
 function router(nav) {
 	// hard coded book database to be replaced by MySQL.
@@ -26,13 +29,22 @@ function router(nav) {
 	// routing to view the homepage
 	bookRouter.route('/')
 		.get((req, res) => {
-			res.render(
-				'dashboard', {
-					nav,
-		  		title: 'SiTE',
-		  		dashboard
-		  	}
-			);
+			const request = new sql.Request();
+
+			// this returns a promise that sends back some desired result
+			// but also includes error handling
+			request.query('SELECT * FROM assistants')
+				.then((result) => {
+					debug(result);
+					res.render(
+						'dashboard', {
+							nav,
+					  		title: 'SiTE',
+					  		// this is the sql table
+					  		dashboard: result.recordset
+					  	}
+					);
+				});
 		});
 
 	// routing to view a single assistant
@@ -42,9 +54,9 @@ function router(nav) {
 			res.render(
 				'assistant', {
 					nav,
-		  		title: 'SiTE',
-		  		book: dashboard[id]
-		  	}
+			  		title: 'SiTE',
+			  		book: dashboard[id]
+		  		}
 			);
 		});
 	// now that we've created bookRouter, return it.
