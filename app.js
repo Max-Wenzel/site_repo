@@ -11,7 +11,10 @@ const expressValidator = require('express-validator');
 // stuff outside of requires
 const app = express();
 // attempt PORT, if failed then use port 3000
-const port = process.env.PORT || 3000;
+// for some reason process.env.PORT is causing a javascript throw error. If using a VM then just use:
+const port = 3000;
+// otherwise this should work...
+// const port = process.env.PORT || 3000;
 
 // configuration for mssql
 const config = {
