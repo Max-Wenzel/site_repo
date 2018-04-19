@@ -47,7 +47,7 @@ function router(nav) {
 					await request.input('id', sql.Int, id)
 						.query('SELECT * FROM course WHERE id = @id');
 				res.render(
-					'assistant', {
+					'course', {
 						nav,
 				  		title: 'SiTE',
 				  		courses: result.recordset[0]
