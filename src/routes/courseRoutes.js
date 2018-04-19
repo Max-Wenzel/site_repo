@@ -1,13 +1,14 @@
 const express = require('express');
-const bookRouter = express.Router();
+const courseRouter = express.Router();
 const sql = require('mssql');
 // pass in bookRoutes as argument for debug
-const debug = require('debug')('app:bookRoutes');
+const debug = require('debug')('app:courseRoutes');
 
 function router(nav) {
 
-	// routing to view the homepage
-	bookRouter.route('/')
+	
+
+		courseRouter.route('/')
 		.get((req, res) => {
 /*
 	Inside a function marked as async, you are allowed to place the await keyword
@@ -23,22 +24,20 @@ function router(nav) {
 				const request = new sql.Request();
 				// this returns a promise that sends back some desired result
 				// but also includes error handling
-				const result = await request.query('SELECT * FROM assistants')
+				const result = await request.query('SELECT * FROM course')
 
 				res.render(
-					'dashboard', {
+					'courses', {
 						nav,
 				  		title: 'SiTE',
 				  		// this is the sql table
-				  		dashboard: result.recordset
+				  		courses: result.recordset
 				  	}
 				);
 			}());
 		});
 
-
-	// routing to view a single assistant
-	bookRouter.route('/:id')
+		courseRouter.route('/:id')
 		.get((req, res) => {
 			(async function query(){
 				
@@ -46,18 +45,20 @@ function router(nav) {
 				const request = new sql.Request();
 				const result = 
 					await request.input('id', sql.Int, id)
-						.query('SELECT * FROM assistants WHERE id = @id');
+						.query('SELECT * FROM course WHERE id = @id');
 				res.render(
 					'assistant', {
 						nav,
 				  		title: 'SiTE',
-				  		dashboard: result.recordset[0]
+				  		courses: result.recordset[0]
 			  		}
 				);
 			}());
 		});
+
+	
 	// now that we've created bookRouter, return it.
-	return bookRouter;
+	return courseRouter;
 }
 
 // let the other files know about router
