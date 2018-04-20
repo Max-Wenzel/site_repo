@@ -7,6 +7,17 @@ const debug = require('debug')('app:authRoutes');
 const authRouter = express.Router();
 
 function router(nav) {
+	// visitor is only able to access dashboard if they are a valid user
+	/*
+	uncomment once we get user database working
+	bookRouter.use((req, res, next) => {
+		if (req.user) {
+			next();
+		} else {
+			res.redirect('/');
+		}
+	});
+	*/
 	authRouter.route('/signUp')
 		.post((req, res) => {
 
@@ -46,6 +57,14 @@ function router(nav) {
 		}));
 	// since the user is logged in, passport will attach the user to a request
 	authRouter.route('/profile')
+		// user authorization
+		.all((req, res, next) => {
+			if(req.user){
+				next();
+			} else {
+				res.redirect('/');
+			}
+		})
 		.get((req, res) => {
 			res.json(req,user);
 		});
