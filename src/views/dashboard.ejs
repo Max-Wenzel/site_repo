@@ -60,7 +60,13 @@
           <%for (let i=0; i<dashboard.length; i++) {%>
             <% var d = new Date();
                  var day = d.getDay();
-                 var hour = d.getHours()
+                 var hour = String(d.getHours());
+                 var minute = String(d.getMinutes());
+                 if(minute.length == 1){
+                    minute = '0'+minute;
+                  }
+                 var hour = hour + '.' + minute;
+                 var hour = Number(hour);
                  if(day == 1){
                     var begin = dashboard[i].MondayS;
                     var end = dashboard[i].MondayE;
@@ -90,7 +96,7 @@
             <div class="row">    
               <br>
               <div class="col-md-2 col-sm-3 text-center">
-                <a class="story-title" href="#"><img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" style="width:100px;height:100px" class="img-circle"></a>
+                <a class="story-title" href="#"><img alt="" src="http://tachyondecay.net/images/blog/fb_performance.png" style="width:100px;height:100px" class="img-circle"></a>
               </div>
               <div class="col-md-10 col-sm-9">
                 <h3><%=dashboard[i].full_name%></h3>
