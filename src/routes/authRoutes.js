@@ -14,7 +14,7 @@ function router(nav) {
 			const request = new sql.Request();
 
 			(async function addUser(){
-				let client;
+				//let client;
 				try {
 					const results = await request.query('SELECT * FROM assistants')
 					debug('Connected correctly to server');
