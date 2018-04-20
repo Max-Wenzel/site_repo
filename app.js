@@ -53,9 +53,12 @@ const nav = [
 // a router encapsulates all routes in one spot.
 // this passes the nav object into the require function for routing
 const bookRouter = require('./src/routes/bookRoutes')(nav);
+const courseRouter = require('./src/routes/courseRoutes')(nav);
+
 
 // let the app know we are using bookRouter (similar to a require)
 app.use('/dashboard', bookRouter);
+app.use('/courses', courseRouter);
 
 // (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {
