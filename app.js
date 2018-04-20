@@ -5,8 +5,11 @@ const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
 const sql = require('mssql');
-const expressSession = require('express-session');
+const session = require('express-session');
 const expressValidator = require('express-validator');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
 // stuff outside of requires
 const app = express();
@@ -35,6 +38,15 @@ sql.connect(config);
 
 // tiny gives less information for logs
 app.use(morgan('tiny'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+// secret is used to build the cookie
+app.use(session({secret: 'site',
+                saveUninitialized: true,
+                resave: true}));
+
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
@@ -42,6 +54,9 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+
+// passport used for user authentication
+require('./src/config/passport.js')(app);
 
 // define objects for navigation bar and routing
 const nav = [
@@ -54,11 +69,13 @@ const nav = [
 // this passes the nav object into the require function for routing
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 const courseRouter = require('./src/routes/courseRoutes')(nav);
+const authRouter = require('./src/routes/authRoutes')(nav);
 
 
 // let the app know we are using bookRouter (similar to a require)
 app.use('/dashboard', bookRouter);
 app.use('/courses', courseRouter);
+app.use('/auth', authRouter);
 
 // (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {

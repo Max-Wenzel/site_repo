@@ -6,6 +6,18 @@ const debug = require('debug')('app:bookRoutes');
 
 function router(nav) {
 
+	// visitor is only able to access dashboard if they are a valid user
+	/*
+	uncomment once we get user database working
+	bookRouter.use((req, res, next) => {
+		if (req.user) {
+			next();
+		} else {
+			res.redirect('/');
+		}
+	});
+	*/
+
 	// routing to view the homepage
 	bookRouter.route('/')
 		.get((req, res) => {
