@@ -6,7 +6,17 @@ const debug = require('debug')('app:courseRoutes');
 
 function router(nav) {
 
-	
+	// visitor is only able to access dashboard if they are a valid user
+	/*
+	uncomment once we get user database working
+	bookRouter.use((req, res, next) => {
+		if (req.user) {
+			next();
+		} else {
+			res.redirect('/');
+		}
+	});
+	*/
 
 		courseRouter.route('/')
 		.get((req, res) => {
