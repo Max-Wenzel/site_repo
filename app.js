@@ -42,7 +42,6 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session());
 // secret is used to build the cookie
 app.use(session({secret: 'site'}));
 

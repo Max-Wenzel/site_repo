@@ -1,4 +1,5 @@
 const passport = require('passport');
+require('./strategies/local.strategy');
 
 module.exports = function passportConfig(app) {
 	
@@ -12,9 +13,7 @@ module.exports = function passportConfig(app) {
 	});
 	
 	// Retrieves user from session
-	passport.deserializeUser((userId, done) => {
+	passport.deserializeUser((user, done) => {
 		done(null, user);
 	});
-
-	require('./strategies/local.stragey');
 };
