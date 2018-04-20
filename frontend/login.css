@@ -1,0 +1,119 @@
+body 
+{
+	padding: 0;
+	margin: 0;
+	background-color: #111166;
+	color: white;
+	font-size: 17px;
+}
+
+footer
+{
+	padding-top: 100px;
+	font-family:'Oswald',arial narrow,sans-serif;
+	text-align: center;
+	font-size: 20px;
+	color: white;
+}
+
+.Footer
+{
+
+}
+
+.Header
+{
+	text-align: center;
+	padding-top: 60px;
+	padding-bottom: 30px;
+	font-family:'Oswald',arial narrow,sans-serif
+}
+
+.Body
+{
+	width: 50%;
+	height: 400px;
+	background: white;
+	margin: 0 auto;
+	border: 2px solid black;
+	color: black;
+}
+
+.Body .Logo
+{
+	float: left;
+	width: 50%;
+	height: 400px;
+	background: url(Corgi PeaNUT.jpg);
+	background-size: cover;
+	box-sizing: border-box;
+}
+
+.Body .Login
+{
+	font-family:'Oswald',arial narrow,sans-serif;
+	float: right;
+	width: 50%;
+	height: 400px;
+	box-sizing: border-box;
+	font-size: 20px;
+}
+
+.form-group
+{
+	width: 100%;
+	padding: 80px 40px;
+	box-sizing: border-box;
+	height: 400px;
+	background: white;
+}
+
+.form-group p
+{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.form-group .Mission
+{
+	background: #111166;
+	text-align: center;
+	color: white;
+	height: 20%;
+	font-size: 20px;
+	border: 3px solid black;
+}
+
+.form-group input
+{
+	margin-bottom: 20px;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"]
+{
+	border: none;
+	border-bottom: 2px solid black;
+	outline: none;
+	height: 40px;
+}
+
+.form-group button[type="submit"]
+{
+	border : none;
+	outline: none;
+	height: 40px;
+	color: yellow;
+	background: gray;
+	cursor: pointer;
+}
+
+.form-group button[type="submit"]:hover
+{
+	background: black;
+}
+
+.form-group .Mission{
+	padding-top: 30px;
+}
