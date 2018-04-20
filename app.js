@@ -5,9 +5,11 @@ const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
 const sql = require('mssql');
-const expressSession = require('express-session');
+const session = require('express-session');
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
 // stuff outside of requires
 const app = express();
@@ -39,6 +41,10 @@ app.use(morgan('tiny'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session());
+// secret is used to build the cookie
+app.use(session({secret: 'site'}));
 
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
@@ -47,6 +53,9 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+
+// passport used for user authentication
+require('./src/config/passport.js')(app);
 
 // define objects for navigation bar and routing
 const nav = [
