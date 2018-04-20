@@ -58,6 +58,30 @@
           <!-- This is going to loop over dashboard to recreate the home page except it will  be the list of dashboard -->
           <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
           <%for (let i=0; i<dashboard.length; i++) {%>
+            <% var d = new Date();
+                 var day = d.getDay();
+                 var hour = d.getHours()
+                 if(day == 1){
+                    var begin = dashboard[i].MondayS;
+                    var end = dashboard[i].MondayE;
+                  }
+                 if(day == 2){
+                    var begin = dashboard[i].TuesdayS;
+                    var end = dashboard[i].TuesdayE;
+                  }
+                 if(day == 3){
+                    var begin = dashboard[i].WednesdayS;
+                    var end = dashboard[i].WednesdayE;
+                  }
+                 if(day == 4){
+                    var begin = dashboard[i].ThursdayS;
+                    var end = dashboard[i].ThursdayE;
+                  }
+                  if(day == 5){
+                    var begin = dashboard[i].FridayS;
+                    var end = dashboard[i].FridayE;
+                  }
+                 if((begin <= hour) && (end >= hour)){%>
             <div class="row">    
               <br>
               <div class="col-md-2 col-sm-3 text-center">
@@ -68,7 +92,7 @@
                 <div class="row">
                   <div class="col-xs-9">
                     <h4><span class="label label-default"><%=dashboard[i].class%></span></h4><h4>
-                    <small style="font-family:courier,'new courier';" class="text-muted">3 hours ago  • 
+                    <small style="font-family:courier,'new courier';" class="text-muted"> 
                     <!-- /dashboard/<%=i%> allows us to access each unique book by clicking Read More -->
                     <a href="/dashboard/<%=dashboard[i].id%>" class="text-muted">Read More</a></small>
                     </h4></div>
@@ -78,6 +102,7 @@
               </div>
             </div>
             <hr>
+            <%}%>
           <%}%> 
           <!--/stories-->
           <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
