@@ -64,22 +64,27 @@
                  if(day == 1){
                     var begin = dashboard[i].MondayS;
                     var end = dashboard[i].MondayE;
+                    var spot = dashboard[i].Mlocation;
                   }
                  if(day == 2){
                     var begin = dashboard[i].TuesdayS;
                     var end = dashboard[i].TuesdayE;
+                    var spot = dashboard[i].Tlocation;
                   }
                  if(day == 3){
                     var begin = dashboard[i].WednesdayS;
                     var end = dashboard[i].WednesdayE;
+                    var spot = dashboard[i].Wlocation;
                   }
                  if(day == 4){
                     var begin = dashboard[i].ThursdayS;
                     var end = dashboard[i].ThursdayE;
+                    var spot = dashboard[i].THlocation;
                   }
                   if(day == 5){
                     var begin = dashboard[i].FridayS;
                     var end = dashboard[i].FridayE;
+                    var spot = dashboard[i].Flocation;
                   }
                  if((begin <= hour) && (end >= hour)){%>
             <div class="row">    
@@ -94,7 +99,7 @@
                     <h4><span class="label label-default"><%=dashboard[i].class%></span></h4><h4>
                     <small style="font-family:courier,'new courier';" class="text-muted"> 
                     <!-- /dashboard/<%=i%> allows us to access each unique book by clicking Read More -->
-                    <a href="/dashboard/<%=dashboard[i].id%>" class="text-muted">Read More</a></small>
+                    <a href="/dashboard/<%=dashboard[i].id%>" class="text-muted"></a></small><%=spot%>
                     </h4></div>
                   <div class="col-xs-3"></div>
                 </div>
