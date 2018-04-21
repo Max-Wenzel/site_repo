@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "DEBUG=app,app:* nodemon app.js",
     "lint": "eslint app.js"
   },
@@ -27,9 +27,12 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.10.0",
+    "mocha": "^5.1.1",
+    "request": "^2.85.0",
     "ws": "3.3.2"
   },
   "nodemonConfig": {
