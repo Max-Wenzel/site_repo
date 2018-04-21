@@ -54,7 +54,34 @@
     <div class="col-md-12">
       <div class="panel">
         <div class="panel-body">
-          <!--/stories-->
+
+          <!-- HEADER START -->
+          <div class="row">    
+              <br>
+              <div class="col-md-10 col-sm-9">
+                <h3>
+                  <u>Teaching Assistants</u>
+                </h3>
+                <div class="row">
+                  <div class="col-xs-9">
+                    <h4>
+                      <span class="label label-default">
+                        If you are looking for a specific TA, find them in the list below.<br> 
+                        Consult the my courses tab to find TA and professor office hours for your specific class!
+                      </span>
+                    </h4>
+                  </div>
+                  <div class="col-xs-3"></div>
+                </div>
+                <br>
+                <br>
+              </div>
+          </div>
+          <hr>
+          <br>
+          <!-- HEADER END -->
+
+          <!-- SHOW TA's START-->
           <!-- This is going to loop over dashboard to recreate the home page except it will  be the list of dashboard -->
           <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
           <%for (let i=0; i<dashboard.length; i++) {%>
@@ -96,10 +123,16 @@
             <div class="row">
               <br>
               <div class="col-md-2 col-sm-3 text-center">
-                <a class="story-title" href="#"><img alt="" src="http://tachyondecay.net/images/blog/fb_performance.png" style="width:100px;height:100px" class="img-circle"></a>
+                <a class="story-title" href="#">
+                  <img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" 
+                  style="width:100px;height:100px" class="img-circle">
+                  <!-- here show the dashboard(i)'s taImage -->
+                </a>
               </div>
               <div class="col-md-10 col-sm-9">
-                <h3><%=dashboard[i].full_name%></h3>
+                <h3>
+                  <%=dashboard[i].full_name%>
+                </h3>
                 <div class="row">
                   <div class="col-xs-9">
                     <h4><span class="label label-default"><%=dashboard[i].class%></span></h4><h4>
@@ -109,14 +142,13 @@
                     </h4></div>
                   <div class="col-xs-3"></div>
                 </div>
-                <br><br>
+                <br>
+                <br>
               </div>
             </div>
-            <hr>
-            <%}%>
-          <%}%>
-          <!--/stories-->
-          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+            <hr><br> <!-- divider -->
+          <%}%> 
+          <!--/show TA's END-->
         </div>
       </div>
    	</div><!--/col-12-->
@@ -124,12 +156,23 @@
 </div>
 
 <hr>
-
-
-
 <hr>
 
-<hr>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li><i class="icon-facebook icon-2x"></i></li>
+          <li><i class="icon-twitter icon-2x"></i></li>
+          <li><i class="icon-google-plus icon-2x"></i></li>
+          <li><i class="icon-pinterest icon-2x"></i></li>
+          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
 
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

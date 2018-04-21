@@ -52,25 +52,73 @@
     <div class="col-md-12">
       <div class="panel">
         <div class="panel-body">
-          <!--/stories-->
-            <div class="row">
+          <!-- HEADER START -->
+          <div class="row">    
               <br>
-              <div class="col-md-2 col-sm-3 text-center">
-                <a class="story-title" href="#"><img alt="" src="http://api.randomuser.me/portraits/thumb/men/58.jpg" style="width:100px;height:100px" class="img-circle"></a>
-              </div>
               <div class="col-md-10 col-sm-9">
-                <h3><%=dashboard.full_name%></h3>
-                <div class="row">
-                  <div class="col-xs-9">
-                    <h4><span class="label label-default"><%=dashboard.class%></span></h4><h4>
-                    </h4></div>
-                  <div class="col-xs-3"></div>
-                </div>
-                <br><br>
+                  <h3><span style="text-decoration: underline;">
+                      Class Information
+                  </span></h3>
+                  <div class="row">
+                      <div class="col-xs-9">
+                          <h4 style="font-family:courier,'new courier';" class="text-muted">
+                              Here you can find office hour times and locations of all <br>
+                              Teaching Assistants and Professors of each specific class.
+                          </h4>
+                      </div>
+                      <div class="col-xs-3"></div>
+                  </div>
+                  <br>
+                  <br>
               </div>
+          </div>
+          <!-- HEADER END -->
+
+          <br><hr><br> <!-- divider -->
+
+          <!--Class List START-->
+          <!-- use a js for-loop to list classes: for (let i=0; i<classList.length; i++) { -->
+            <div class="row">    
+                <div class="col-md-10 col-sm-9">
+                    <h3>
+                        ClassList[i] class name <!-- SHOW: classList[i].name -->
+                    </h3>
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <!-- TA schedules START -->
+                            <!-- js forloop to show office hours: for(let i=0;i<classList[i].schedule.length; i++) { -->
+                              <h4 style="font-family:courier,'new courier';" class="text-muted">
+                              <span class="label label-default">
+                                  <b>classList[i] TA name</b>
+                                  <!-- Show: classList[i].schedule[i].TA_name -->
+                              </span>
+                              </h4>
+
+                              <br>
+                              <h4>
+                                  <ul>
+                                      <li>classList[i] officeHour Date <!-- Show: classList[i].schedule[i].date--> </li>
+                                      <li>classList[i] officeHour Time <!-- Show: classList[i].schedule[i].time--></li>
+                                  </ul>
+                              </h4>
+                              <h4>
+                                  classList[i] TA location
+                                  <!-- Show: classList[i].schedule[i].location -->
+                              </h4>
+                              <br>
+                            <!-- put a for loop end tag here -->
+                            <!-- TA schedules END -->
+                        </div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                </div>
             </div>
+
+            <br>
             <hr>
-          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+          <!-- put a for loop end tag here --->
+          <!-- Class List END -->
+
         </div>
       </div>
    	</div>
@@ -78,13 +126,27 @@
 </div>
 
 <hr>
-
-
 <hr>
 
-<hr>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li><i class="icon-facebook icon-2x"></i></li>
+          <li><i class="icon-twitter icon-2x"></i></li>
+          <li><i class="icon-google-plus icon-2x"></i></li>
+          <li><i class="icon-pinterest icon-2x"></i></li>
+          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
+        </ul>  
+      </div>
+    </div>
+  </div>
+</footer>
+
 	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
 	</body>
 </html>
