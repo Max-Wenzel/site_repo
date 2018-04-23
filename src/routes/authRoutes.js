@@ -20,7 +20,13 @@ function router(nav) {
 	*/
 	authRouter.route('/signUp')
 		.post((req, res) => {
-
+			req.check('email', 'Invalid Email ').isEmail();
+			req.check('password').isLength({min: 8}).equals(req.body.confPassword);
+			var errors = req.validationErrors();
+			if (errors)
+			{
+				req.session.errors = errors;
+			}
 			const { username, password } = req.body;
 			const request = new sql.Request();
 

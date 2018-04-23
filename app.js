@@ -50,6 +50,7 @@ app.use(session({secret: 'site',
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
+app.use(expressValidator());
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.set('views', './src/views');
@@ -87,7 +88,8 @@ app.get('/', (req, res) => {
   			{link: '/calendar', title: 'Calendar'},
         {link: '/courses', title: 'My Courses'}
   		],
-  		title: 'SiTE'
+  		title: 'SiTE',
+      errors: req.session.errors
   	}
   );
 });
