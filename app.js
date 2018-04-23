@@ -96,3 +96,7 @@ app.listen(port, () => {
   // ${} is a form of string templates
   debug(`listening on port ${chalk.green(port)}`);
 });
+
+exports.closeServer = function(){
+  server.close();
+};
