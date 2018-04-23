@@ -11,11 +11,19 @@ describe('server tests', function() {
         done();
       });
     });
-    it('Main page status', function(done) {
+    it('Main Page Status', function(done) {
     	request('http://localhost:3000' , function(error, response, body) {
         	expect(response.statusCode).to.equal(200);
         	done();
     });
-});
-});
-});
+	});
+	it('Expect 404 Error', function(done) {
+		// do not have about page
+    	request('http://localhost:3000/about' , function(error, response, body) {
+        	expect(response.statusCode).to.equal(404);
+        	done();
+    	});
+	});
+    
+  	});
+  	});
