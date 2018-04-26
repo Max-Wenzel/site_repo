@@ -28,12 +28,18 @@ function router(nav) {
 				req.session.errors = errors;
 			}
 			const { username, password, confpass, type} = req.body;
+			if(req.body.type == 'Student'){
+				var x = 1;
+			}
+			else{
+				var x = 2;
+			}
 			const request = new sql.Request();
 
 			(async function addUser(){
 				//let client;
 				try {
-					const results = await request.query("insert into login (type, username, password) values(1,'"+req.body.username+"','"+req.body.password+"');");
+					const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+req.body.password+"');");
 					debug('Connected correctly to server');
 					const user = { username, password };
 					debug(user)
@@ -82,12 +88,19 @@ function router(nav) {
 			(async function checkUser(){
 				//let client;
 				try {
-					const result = await request.query("select count(username) from login where username = '"+req.body.username+"' and password ='"+req.body.password+"');");
+					const result = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+req.body.password+"'");
+					//var id = await request.query("select id from login where username = '"+req.body.username+"'");
 					debug('Connected correctly to server');
 					const user = { username, password };
 					debug(user)
-					if(result.length > 0){
-						res.redirect('/dashboard');
+					console.log(result);
+
+					var dataString = result.recordset[0].id;
+					var lit = Number(dataString);
+		
+
+					if(result.recordset.length > 0){
+						res.redirect('/dashboard/'+lit);
 						}
 					else{
 						res.redirect('/');
