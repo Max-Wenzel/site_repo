@@ -88,12 +88,19 @@ function router(nav) {
 			(async function checkUser(){
 				//let client;
 				try {
-					const result = await request.query("select * from login where username = '"+req.body.username+"' and password ='"+req.body.password+"'");
+					const result = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+req.body.password+"'");
+					//var id = await request.query("select id from login where username = '"+req.body.username+"'");
 					debug('Connected correctly to server');
 					const user = { username, password };
 					debug(user)
+					console.log(result);
+
+					var dataString = result.recordset[0].id;
+					var lit = Number(dataString);
+		
+
 					if(result.recordset.length > 0){
-						res.redirect('/dashboard');
+						res.redirect('/dashboard/'+lit);
 						}
 					else{
 						res.redirect('/');
