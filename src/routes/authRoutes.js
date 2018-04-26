@@ -19,7 +19,7 @@ function router(nav) {
 	});
 	*/
 	authRouter.route('/signUp')
-		.post((req, res) => {
+		.post((req, res,next) => {
 			req.check('email', 'Invalid Email ').isEmail();
 			req.check('password').isLength({min: 8}).equals(req.body.confPassword);
 			var errors = req.validationErrors();
@@ -33,23 +33,31 @@ function router(nav) {
 			(async function addUser(){
 				//let client;
 				try {
-					const results = await request.query('SELECT * FROM assistants')
+					const results = await request.query("insert into login (type, username, password) values(1,'"+req.body.username+"','"+req.body.password+"');");
 					debug('Connected correctly to server');
 					const user = { username, password };
 					debug(user)
+					
 				} catch (err) {
 					debug(err);
 				}
+				
+
 				// login and create user, fetched from signup submit button
-				req.login(results.ops[0], () => {
-					res.redirect('/auth/profile');
-				});
+				
+				
 			}());
+
+			//res.end();
+
 
 			debug(req.body);
 
-			res.json(req.body);
+			//res.json(req.body);
+
+			res.redirect('/dashboard');
 		});
+		
 	authRouter.route('/signin')
 		.get((req, res) => {
 			res.render('signin', {
@@ -57,10 +65,50 @@ function router(nav) {
 				title: 'Sign In'
 			});
 		})
+		.post((req, res,next) => {
+			
+			const { username, password } = req.body;
+			const request = new sql.Request();
+
+			(async function checkUser(){
+				//let client;
+				try {
+					const result = await request.query("select count(username) from login where username = '"+req.body.username+"' and password ='"+req.body.password+"');");
+					debug('Connected correctly to server');
+					const user = { username, password };
+					debug(user)
+					if(result.length > 0){
+						res.redirect('/dashboard');
+						}
+					else{
+						res.redirect('/');
+					}
+					
+				} catch (err) {
+					debug(err);
+				}
+				
+				
+				
+
+				// login and create user, fetched from signup submit button
+				
+				
+			}());
+
+			//res.end();
+
+
+			debug(req.body);
+			//res.redirect('/dashboard');
+			//res.json(req.body);
+			
+		});
+		/*
 		.post(passport.authenticate('local', {
 			successRedirect: '/auth/profile',
 			failureRedirect: '/'
-		}));
+		}));*/
 	// since the user is logged in, passport will attach the user to a request
 	authRouter.route('/profile')
 		// user authorization
