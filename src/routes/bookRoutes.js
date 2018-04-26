@@ -35,7 +35,7 @@ function router(nav) {
 				const request = new sql.Request();
 				// this returns a promise that sends back some desired result
 				// but also includes error handling
-				const result = await request.query('SELECT * FROM assistants')
+				const result = await request.query('SELECT * FROM assistants ORDER BY Class')
 
 				res.render(
 					'dashboard', {

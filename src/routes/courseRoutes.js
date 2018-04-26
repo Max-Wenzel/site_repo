@@ -34,7 +34,7 @@ function router(nav) {
 				const request = new sql.Request();
 				// this returns a promise that sends back some desired result
 				// but also includes error handling
-				const result = await request.query('SELECT * FROM course')
+				const result = await request.query('SELECT * FROM assistants ORDER BY Class')
 
 				res.render(
 					'courses', {
@@ -55,7 +55,7 @@ function router(nav) {
 				const request = new sql.Request();
 				const result = 
 					await request.input('id', sql.Int, id)
-						.query('SELECT * FROM course WHERE id = @id');
+						.query('SELECT * FROM assistants WHERE id = @id');
 				res.render(
 					'course', {
 						nav,
