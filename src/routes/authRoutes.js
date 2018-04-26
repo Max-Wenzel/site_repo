@@ -53,11 +53,11 @@ function router(nav) {
 
 
 
-				req.login(results.ops[0], () => {
+				/*req.login(results.ops[0], () => {
 					//request.query('INSERT INTO login')
 					res.redirect('/auth/profile');
 				});
-			}());
+			}());*/
 			//debug(request.query());
 
 			debug(req.body);
