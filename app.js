@@ -1,5 +1,9 @@
 // included packages
 const express = require('express');
+var router = express.Router();
+var phpExpress = require('php-express')({
+    binPath: 'php'
+});
 const chalk = require('chalk');
 const debug = require('debug')('app');
 const morgan = require('morgan');
@@ -36,6 +40,15 @@ const config = {
 // .catch(err => debug(err)) for some reason always throws an error???
 sql.connect(config);
 
+
+app.use('/', express.static(__dirname));
+
+app.set('views', path.join(__dirname, '/views'));
+app.engine('php', phpExpress.engine);
+app.set('view engine', 'php');
+
+app.all(/.+\.php$/, phpExpress.router);
+
 // tiny gives less information for logs
 app.use(morgan('tiny'));
 
@@ -62,7 +75,7 @@ require('./src/config/passport.js')(app);
 // define objects for navigation bar and routing
 const nav = [
   {link: '/dashboard', title: 'Dashboard'},
-  {link: '/calendar', title: 'Calendar'},
+  {link: '/calendar', title: 'EDIT HOURS'},
   {link: '/courses', title: 'My Courses'}
 ];
 
@@ -71,12 +84,17 @@ const nav = [
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 const courseRouter = require('./src/routes/courseRoutes')(nav);
 const authRouter = require('./src/routes/authRoutes')(nav);
+const calendarRouter = require('./src/routes/calendarRoutes')(nav);
+
 
 
 // let the app know we are using bookRouter (similar to a require)
 app.use('/dashboard', bookRouter);
 app.use('/courses', courseRouter);
 app.use('/auth', authRouter);
+app.use('/calendar', calendarRouter);
+
+
 
 // (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {
@@ -85,7 +103,7 @@ app.get('/', (req, res) => {
       // objects to be fetched for in index.ejs for nav bar
   		nav: [
   			{link: '/dashboard', title: 'Dashboard'},
-  			{link: '/calendar', title: 'Calendar'},
+  			{link: '/calendar', title: 'EDIT HOURS'},
         {link: '/courses', title: 'My Courses'}
   		],
   		title: 'SiTE',

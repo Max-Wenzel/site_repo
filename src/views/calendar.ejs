@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title><%=title%></title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">Home</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <%for (let i=0; i<nav.length; i++) {%>
+          <li>
+            <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
+          </li>
+        <%}%>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1><%=title%>
+          <p class="lead"></p>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
+
+          <!-- Display Clock -->
+          <div id="ClockDisplay"></div>
+          <script type="text/javascript">
+            function showTime() {
+              var date = new Date();
+              var h = date.getHours();
+              var m = date.getMinutes();
+              var s = date.getSeconds();
+              var session = "AM";
+
+              if(h == 0){
+                h = 12;
+              }
+
+              if(h > 12){
+                h = h - 12;
+                session = "PM";
+              }
+
+              h = (h < 10) ? "0" + h : h;
+              m = (m < 10) ? "0" + m : m;
+              s = (s < 10) ? "0" + s : s;
+
+              var time = h+":"+m+":"+s+" "+session;
+              document.getElementById("ClockDisplay").innerText = time;
+              document.getElementById("ClockDisplay").textContent = time;
+
+              setTimeout(showTime, 1000);
+            }
+            showTime();
+          </script>
+          
+
+
+          <!--/stories-->
+          <!-- This is going to loop over courses to recreate the home page except it will  be the list of courses -->
+          <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
+
+
+
+          Edit TA Hours:
+          <head>Use army time and input minutes with decimal: 1:30 == 1.30</head>
+          <form method="post" action="/calendar/submit" >
+          <div class="form-field">
+        <label for="id">ID: </label>
+          <input class="input" id="id" name="id" type="number" />
+          </div>
+             <div class="form-field">
+        <label for="id">Monday Start: </label>
+          <input class="input" id="MS" name="MS" type="number" />
+          </div>
+          <div class="form-field">
+            <label for="cid">Tuesday Start: </label>
+            <input class="input" id="TS" name="TS" type="number"  />
+            </div>
+             <div class="form-field">
+        <label for="id">Wednesday Start: </label>
+          <input class="input" id="WS" name="WS" type="number" />
+          </div>
+          <div class="form-field">
+            <label for="cid">Thursday Start: </label>
+            <input class="input" id="THS" name="THS" type="number"  />
+            </div>
+             <div class="form-field">
+        <label for="id">Friday Start: </label>
+          <input class="input" id="FS" name="FS" type="number" />
+          </div>
+           <div class="form-field">
+        <label for="id">Monday End: </label>
+          <input class="input" id="ME" name="ME" type="number" />
+          </div>
+          <div class="form-field">
+            <label for="cid">Tuesday End: </label>
+            <input class="input" id="TE" name="TE" type="number"  />
+            </div>
+             <div class="form-field">
+        <label for="id">Wednesday End: </label>
+          <input class="input" id="WE" name="WE"  type="number" />
+          </div>
+          <div class="form-field">
+            <label for="cid">Thursday End: </label>
+            <input class="input" id="THE"  name="THE" type="number"  />
+            </div>
+             <div class="form-field">
+        <label for="id">Friday End: </label>
+          <input class="input" id="FE" name="FE"  type="number" />
+          </div>
+            <div class="form-actions">
+            <input type="submit" value="submit">
+            </div>
+            </form>
+
+              
+
+          <div id="mainform">
+            <div class="innerdiv">
+              <h2>Edit TA hours</h2>
+                <!-- Required Div Starts Here -->
+                
+                    <div id="clear"></div>
+                    </div>
+                  <div id="clear"></div>
+                </div>
+                
+          <!--/stories-->
+          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+      </div>
+   	</div><!--/col-12-->
+  </div>
+</div>
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

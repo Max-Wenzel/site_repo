@@ -101,6 +101,16 @@
                 <%}%>
               </div>
               <div class="col-md-10 col-sm-9">
+
+                <h3><%=courses[i].professor%></h3>
+                <div class="row">
+                  <div class="col-xs-9">
+                    <h4><span class="label label-default"><%=courses[i].name%></span></h4><h4>
+                    <small style="font-family:courier,'new courier';" class="text-muted">3 hours ago  •
+                    <!-- /courses/<%=i%> allows us to access each unique book by clicking Read More -->
+                    <a href="/courses/<%=courses[i].id%>" class="text-muted">Read More</a></small>
+                    </h4></div>
+
                 <% if( (i == 0) || (courses[i].class != courses[i-1].class) ) { %>
                   <h3> <%=courses[i].class%> </h3>
                 <%}%>
@@ -147,6 +157,7 @@
                       <a href="/courses/<%=courses[i].id%>" class="text-muted">Read More</a>
                     </h4>
                   </div>
+
                   <div class="col-xs-3"></div>
                 </div> <!-- end of div -->
               </div>
