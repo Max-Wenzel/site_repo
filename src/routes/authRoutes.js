@@ -28,12 +28,18 @@ function router(nav) {
 				req.session.errors = errors;
 			}
 			const { username, password, confpass, type} = req.body;
+			if(req.body.type == 'Student'){
+				var x = 1;
+			}
+			else{
+				var x = 2;
+			}
 			const request = new sql.Request();
 
 			(async function addUser(){
 				//let client;
 				try {
-					const results = await request.query("insert into login (type, username, password) values(1,'"+req.body.username+"','"+req.body.password+"');");
+					const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+req.body.password+"');");
 					debug('Connected correctly to server');
 					const user = { username, password };
 					debug(user)
