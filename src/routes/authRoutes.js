@@ -27,7 +27,7 @@ function router(nav) {
 			{
 				req.session.errors = errors;
 			}
-			const { username, password } = req.body;
+			const { username, password, confpass, type} = req.body;
 			const request = new sql.Request();
 
 			(async function addUser(){
@@ -44,12 +44,21 @@ function router(nav) {
 				
 
 				// login and create user, fetched from signup submit button
+
 				
 				
 			}());
 
 			//res.end();
 
+
+
+				req.login(results.ops[0], () => {
+					//request.query('INSERT INTO login')
+					res.redirect('/auth/profile');
+				});
+			}());
+			//debug(request.query());
 
 			debug(req.body);
 
