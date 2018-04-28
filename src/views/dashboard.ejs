@@ -108,7 +108,8 @@
           <!-- SHOW TA's START-->
           <!-- This is going to loop over dashboard to recreate the home page except it will  be the list of dashboard -->
           <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
-          <%for (let i=0; i<dashboard.length; i++) {%>                 <% var d = new Date();
+          <%for (let i=0; i<dashboard.length; i++) {%>                 
+          <% var d = new Date();
                  var day = d.getDay();
                 var hour = String(d.getHours());
                  var minute = String(d.getMinutes());
@@ -142,108 +143,87 @@
                     var end = dashboard[i].FridayE;
                     var spot = dashboard[i].Flocation;
                   }
-                 if((begin <= hour) && (end >= hour)){%>
+                 if((begin <= hour) && (end >= hour)){
+                      var BAMPM = 'AM';
+                      var EAMPM = 'AM';
+
+                      begin = Number(begin);
+                      end = Number(end);
+                      if(begin>=13){
+                          BAMPM = 'PM';
+                          begin = begin - 12;
+                        }
+                      if(end>=13){
+                          EAMPM = 'PM';
+                          end = end - 12;
+                        }
+                        begin = begin.toString();
+                        begin = begin.replace(".",":");
+                        end = end.toString();
+                        end = end.replace(".",":");
+                        if(begin.length <=2 ){
+                          begin = begin + ":00";
+                        }
+                        else if(begin.length ==3 ){
+                          begin = begin + "0";
+                        }
+                        if(end.length <=2 ){
+                          end = end + ":00";
+                        }
+                        else if(end.length ==3 ){
+                          end = end + "00";
+                        }
+                        begin = begin.substring(0,5);
+                        end = end.substring(0,4);
+
+                        if(begin.charAt(1) != ":"){
+                            begin = begin + "0";
+                        }
+                        if(end.charAt(1) != ":"){
+                            end = end + "0";
+                        }
+
+                        %>
             <div class="row">
               <div class="col-md-2 col-sm-3 text-center">
-                  <% if( (i == 0) || (dashboard[i].class != dashboard[i-1].class) ) { %>
                       <a class="story-title" href="#">
                       <img alt="" src="http://tachyondecay.net/images/blog/fb_performance.png"
                       style="width:100px;height:100px" class="img-circle">
                       <!-- here show the ta's Image -->
-                  <%}%>
                 </a>
               </div>
               <div class="col-md-10 col-sm-9">
-                <% if( (i == 0) || (dashboard[i].class != dashboard[i-1].class) ) { %>
                     <h3><%=dashboard[i].class%></h3>
-                <%}%>
+               
                 <div class="row">
                   <div class="col-xs-9">
                     <h3>
                       <span class="label label-default"><%=dashboard[i].full_name%></span></h4><h4>
                     </h3>
-                      <% var d=new Date(); var day=d.getDay(); var hour=d.getHours(); 
-                      if(day == 1){ if(dashboard[i].MondayE>hour){ if(dashboard[i].MondayS<hour){ %>
                         <table><tr>
-                          <td><h4>In session:&nbsp;<%=dashboard[i].MondayS%></h4></td>
+                          <td><h4>In session:&nbsp;<%=begin+ '  ' + BAMPM%></h4></td>
                           <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
+                          <td><h4><%=end + '  ' + EAMPM%><b>&nbsp;<%=spot%></b></h4></td>
                         </tr></table>
-                      <% } else { %>
-                          <table><tr>
-                            <td><h4>Upcoming:&nbsp;<%=dashboard[i].MondayS%></h4></td>
-                            <td><h4> - </h4></td>
-                            <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
-                          </tr></table>
-                      <%}%><%}%><%}%>
-                      <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
-                      if(day == 2){ if(dashboard[i].TuesdayE>hour){ if(dashboard[i].TuesdayS<hour){ %>
-                        <table><tr>
-                          <td><h4>In session:&nbsp;<%=dashboard[i].TuesdayS%></h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].TuesdayE%><b>&nbsp;<%=dashboard[i].Tlocation%></b></h4></td>
-                        </tr></table>
-                      <% } else { %>
-                        <table><tr>
-                          <td><h4>Upcoming:&nbsp;<%=dashboard[i].MondayS%></h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
-                        </tr></table>
-                      <%}%><%}%><%}%>
-                      <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
-                      if(day == 3){ if(dashboard[i].WednesdayE>hour){ if(dashboard[i].WednesdayS<hour){ %>
-                        <table><tr>
-                          <td><h4>In session:&nbsp;<%=dashboard[i].WednesdayS%></h4></td>
-                          <td><h4> - </h4></td>
-                         <td><h4><%=dashboard[i].WednesdayE%><b>&nbsp;<%=dashboard[i].Wlocation%></b></h4></td>
-                        </tr></table>
-                      <% } else { %>
-                          <table><tr>
-                          <td><h4>Upcoming:&nbsp;<%=dashboard[i].MondayS%></h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
-                        </tr></table>
-                      <%}%><%}%><%}%>
-                      <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
-                      if(day == 4){ if(dashboard[i].ThursdayE>hour){ if(dashboard[i].ThursdayS<hour){ %>
-                        <table><tr>
-                          <td><h4>In session:&nbsp;<%=dashboard[i].ThursdayS%></h4></td>
-                          <td><h4> - </h4></td>
-                         <td><h4><%=dashboard[i].ThursdayE%><b>&nbsp;<%=dashboard[i].THlocation%></b></h4></td>
-                        </tr></table>
-                      <% } else { %>
-                        <table><tr>
-                          <td><h4>Upcoming:&nbsp;<%=dashboard[i].MondayS%></h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
-                        </tr></table>
-                      <%}%><%}%><%}%>
-                      <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
-                      if(day == 5){ if(dashboard[i].FridayE > hour){ if(dashboard[i].FridayS<hour){ %>
-                        <table><tr>
-                          <td><h4>In session:&nbsp;<%=dashboard[i].FridayS%></h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].FridayE%><b>&nbsp;<%=dashboard[i].Flocation%></b></h4></td>
-                        </tr></table>
-                      <% } else { %>
-                        <table><tr>
-                          <td><h4>Upcoming:&nbsp;<%=dashboard[i].MondayS%></h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
-                        </tr></table>
-                      <%}%><%}%><%}%>
+                      
                   </div>
                   <div class="col-xs-3"></div>
                 </div>
                 <br>
               </div>
             </div>
+
+            <hr><br> <!-- divider --> <!-- end of current office hours -->
+            <%}%>
+          <%}%>
+
             <hr><br> <!-- divider -->
           <%} else { %> 
               <h2> No current hours </h2>
               <% break; %>
           <% } %>
           <%}%> <!-- end of for -->
+
           <!--/show TA's END-->
         </div>
       </div>
