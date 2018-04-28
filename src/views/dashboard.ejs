@@ -239,8 +239,11 @@
               </div>
             </div>
             <hr><br> <!-- divider -->
-          <%}%> <!-- end of current office hours -->
-          <%}%>
+          <%} else { %> 
+              <h2> No current hours </h2>
+              <% break; %>
+          <% } %>
+          <%}%> <!-- end of for -->
           <!--/show TA's END-->
         </div>
       </div>
