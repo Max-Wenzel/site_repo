@@ -117,39 +117,253 @@
                 <div class="row">
                   <div class="col-xs-9">
                     <h3><span class="label label-default"><%=courses[i].full_name%></span></h3>   
-                        <% if(courses[i].MondayS != 0){ %> <!-- MONDAY -->
+                        <% if(courses[i].MondayS != 0){ 
+                              var begin = courses[i].MondayS;
+                              var end = courses[i].MondayE;
+                              var spot = courses[i].Mlocation;
+                              var BAMPM = 'AM';
+                              var EAMPM = 'AM';
+
+                              begin = Number(begin);
+                              end = Number(end);
+                              if(begin>=13){
+                                BAMPM = 'PM';
+                                begin = begin - 12;
+                              }
+                              if(end>=13){
+                                EAMPM = 'PM';
+                                end = end - 12;
+                              }
+                              begin = begin.toString();
+                              begin = begin.replace(".",":");
+                              end = end.toString();
+                              end = end.replace(".",":");
+                              if(begin.length <=2 ){
+                                begin = begin + ":00";
+                              }
+                              else if(begin.length ==3 ){
+                                begin = begin + "0";
+                              }
+                              if(end.length <=2 ){
+                                end = end + ":00";
+                              }
+                              else if(end.length ==3 ){
+                                end = end + "00";
+                              }
+                              begin = begin.substring(0,5);
+                              end = end.substring(0,4);
+
+                              if(begin.charAt(1) != ":"){
+                                begin = begin + "0";
+                              }
+                            if(end.charAt(1) != ":"){
+                              end = end + "0";
+                            }
+                        %> <!-- MONDAY -->
                             <table><tr>
-                              <td><h4><u><b>Monday:</b></u>&ensp;<%=courses[i].MondayS%></h4></td>
+                              <td><h4><u><b>Monday:</b></u>&ensp;<%=begin+'  '+BAMPM%></h4></td>
                               <td><h4> - </h4></td>
-                              <td><h4><%=courses[i].MondayE%><b>&nbsp;<%=courses[i].Mlocation%></b></h4></td>
+                              <td><h4><%=end+'  '+EAMPM%><b>&nbsp;<%=spot%></b></h4></td>
                             </tr></table>
                         <%}%>
-                        <% if(courses[i].TuesdayS != 0){ %> <!-- TUESDAY -->
+                        <% if(courses[i].TuesdayS != 0){ 
+                              var begin = courses[i].TuesdayS;
+                              var end = courses[i].TuesdayE;
+                              var spot = courses[i].Tlocation;
+                              var BAMPM = 'AM';
+                              var EAMPM = 'AM';
+
+                              begin = Number(begin);
+                              end = Number(end);
+                              if(begin>=13){
+                                BAMPM = 'PM';
+                                begin = begin - 12;
+                              }
+                              if(end>=13){
+                                EAMPM = 'PM';
+                                end = end - 12;
+                              }
+                              begin = begin.toString();
+                              begin = begin.replace(".",":");
+                              end = end.toString();
+                              end = end.replace(".",":");
+                              if(begin.length <=2 ){
+                                begin = begin + ":00";
+                              }
+                              else if(begin.length ==3 ){
+                                begin = begin + "0";
+                              }
+                              if(end.length <=2 ){
+                                end = end + ":00";
+                              }
+                              else if(end.length ==3 ){
+                                end = end + "00";
+                              }
+                              begin = begin.substring(0,5);
+                              end = end.substring(0,4);
+
+                              if(begin.charAt(1) != ":"){
+                                begin = begin + "0";
+                              }
+                            if(end.charAt(1) != ":"){
+                              end = end + "0";
+                            }
+
+                        %> <!-- TUESDAY -->
                             <table><tr>
-                              <td><h4><u><b>Tuesday:</b></u>&ensp;<%=courses[i].TuesdayS%></h4></td>
+                              <td><h4><u><b>Tuesday:</b></u>&ensp;<%=begin+'  '+BAMPM%></h4></td>
                               <td><h4> - </h4></td>
-                              <td><h4><%=courses[i].TuesdayE%><b>&nbsp;<%=courses[i].Tlocation%></b></h4></td>
+                              <td><h4><%=end+'  '+BAMPM%><b>&nbsp;<%=spot%></b></h4></td>
                             </tr></table>
                         <%}%>
-                        <% if(courses[i].WednesdayS != 0){ %> <!-- WEDNESDAY -->
+                        <% if(courses[i].WednesdayS != 0){ 
+                              var begin = courses[i].WednesdayS;
+                              var end = courses[i].WednesdayE;
+                              var spot = courses[i].Wlocation;
+                              var BAMPM = 'AM';
+                              var EAMPM = 'AM';
+
+                              begin = Number(begin);
+                              end = Number(end);
+                              if(begin>=13){
+                                BAMPM = 'PM';
+                                begin = begin - 12;
+                              }
+                              if(end>=13){
+                                EAMPM = 'PM';
+                                end = end - 12;
+                              }
+                              begin = begin.toString();
+                              begin = begin.replace(".",":");
+                              end = end.toString();
+                              end = end.replace(".",":");
+                              if(begin.length <=2 ){
+                                begin = begin + ":00";
+                              }
+                              else if(begin.length ==3 ){
+                                begin = begin + "0";
+                              }
+                              if(end.length <=2 ){
+                                end = end + ":00";
+                              }
+                              else if(end.length ==3 ){
+                                end = end + "00";
+                              }
+                              begin = begin.substring(0,5);
+                              end = end.substring(0,4);
+
+                              if(begin.charAt(1) != ":"){
+                                begin = begin + "0";
+                              }
+                            if(end.charAt(1) != ":"){
+                              end = end + "0";
+                            }
+
+                        %> <!-- WEDNESDAY -->
                             <table><tr>
-                              <td><h4><u><b>Wednesday:</b></u>&ensp;<%=courses[i].WednesdayS%></h4></td>
+                              <td><h4><u><b>Wednesday:</b></u>&ensp;<%=begin+'  '+BAMPM%></h4></td>
                               <td><h4> - </h4></td>
-                              <td><h4><%=courses[i].WednesdayE%><b>&nbsp;<%=courses[i].Wlocation%></b></h4></td>
+                              <td><h4><%=end+'  '+BAMPM%><b>&nbsp;<%=spot%></b></h4></td>
                             </tr></table>
                         <%}%>
-                        <% if(courses[i].ThursdayS != 0){ %> <!-- THURSDAY -->
+                        <% if(courses[i].ThursdayS != 0){ 
+
+                              var begin = courses[i].ThursdayS;
+                              var end = courses[i].ThursdayE;
+                              var spot = courses[i].THlocation;
+                              var BAMPM = 'AM';
+                              var EAMPM = 'AM';
+
+                              begin = Number(begin);
+                              end = Number(end);
+                              if(begin>=13){
+                                BAMPM = 'PM';
+                                begin = begin - 12;
+                              }
+                              if(end>=13){
+                                EAMPM = 'PM';
+                                end = end - 12;
+                              }
+                              begin = begin.toString();
+                              begin = begin.replace(".",":");
+                              end = end.toString();
+                              end = end.replace(".",":");
+                              if(begin.length <=2 ){
+                                begin = begin + ":00";
+                              }
+                              else if(begin.length ==3 ){
+                                begin = begin + "0";
+                              }
+                              if(end.length <=2 ){
+                                end = end + ":00";
+                              }
+                              else if(end.length ==3 ){
+                                end = end + "00";
+                              }
+                              begin = begin.substring(0,5);
+                              end = end.substring(0,4);
+
+                              if(begin.charAt(1) != ":"){
+                                begin = begin + "0";
+                              }
+                            if(end.charAt(1) != ":"){
+                              end = end + "0";
+                            }
+                        %> <!-- THURSDAY -->
                             <table><tr>
-                              <td><h4><u><b>Thursday:</b></u>&ensp;<%=courses[i].ThursdayS%></h4></td>
+                              <td><h4><u><b>Thursday:</b></u>&ensp;<%=begin+'  '+BAMPM%></h4></td>
                               <td><h4> - </h4></td>
-                              <td><h4><%=courses[i].ThursdayE%><b>&nbsp;<%=courses[i].THlocation%></b></h4></td>
+                              <td><h4><%=end+'  '+BAMPM%><b>&nbsp;<%=spot%></b></h4></td>
                             </tr></table>
                         <%}%>
-                        <% if(courses[i].FridayS != 0){ %> <!-- FRIDAY -->
+                        <% if(courses[i].FridayS != 0){ 
+
+                              var begin = courses[i].FridayS;
+                              var end = courses[i].FridayE;
+                              var spot = courses[i].Flocation;
+                              var BAMPM = 'AM';
+                              var EAMPM = 'AM';
+
+                              begin = Number(begin);
+                              end = Number(end);
+                              if(begin>=13){
+                                BAMPM = 'PM';
+                                begin = begin - 12;
+                              }
+                              if(end>=13){
+                                EAMPM = 'PM';
+                                end = end - 12;
+                              }
+                              begin = begin.toString();
+                              begin = begin.replace(".",":");
+                              end = end.toString();
+                              end = end.replace(".",":");
+                              if(begin.length <=2 ){
+                                begin = begin + ":00";
+                              }
+                              else if(begin.length ==3 ){
+                                begin = begin + "0";
+                              }
+                              if(end.length <=2 ){
+                                end = end + ":00";
+                              }
+                              else if(end.length ==3 ){
+                                end = end + "00";
+                              }
+                              begin = begin.substring(0,5);
+                              end = end.substring(0,4);
+
+                              if(begin.charAt(1) != ":"){
+                                begin = begin + "0";
+                              }
+                            if(end.charAt(1) != ":"){
+                              end = end + "0";
+                            }
+                        %> <!-- FRIDAY -->
                             <table><tr>
-                              <td><h4><u><b>Friday:</b></u>&ensp;<%=courses[i].FridayS%></h4></td>
+                              <td><h4><u><b>Friday:</b></u>&ensp;<%=begin+'  '+BAMPM%></h4></td>
                               <td><h4> - </h4></td>
-                              <td><h4><%=courses[i].FridayE%><b>&nbsp;<%=courses[i].Flocation%></b></h4></td>
+                              <td><h4><%=end+'  '+BAMPM%><b>&nbsp;<%=spot%></b></h4></td>
                             </tr></table>
                         <%}%>
                     <h4>
