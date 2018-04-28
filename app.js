@@ -44,10 +44,7 @@ sql.connect(config);
 app.use('/', express.static(__dirname));
 
 app.set('views', path.join(__dirname, '/views'));
-app.engine('php', phpExpress.engine);
-app.set('view engine', 'php');
 
-app.all(/.+\.php$/, phpExpress.router);
 
 // tiny gives less information for logs
 app.use(morgan('tiny'));

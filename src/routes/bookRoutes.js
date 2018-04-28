@@ -58,12 +58,12 @@ function router(nav) {
 				const request = new sql.Request();
 				const result = 
 					await request.input('id', sql.Int, id)
-						.query('SELECT * FROM assistants WHERE id = @id');
+						.query('select * from assistants where cid in (SELECT cid FROM course WHERE id = @id)');
 				res.render(
-					'assistant', {
+					'dashboard', {
 						nav,
 				  		title: 'SiTE',
-				  		dashboard: result.recordset[0]
+				  		dashboard: result.recordset
 			  		}
 				);
 			}());

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title><%=title%></title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+		<link href="/css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">Home</a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <!-- Same functionality as what's in index.ejs -->
+        <%for (let i=0; i<nav.length; i++) {%>
+          <li>
+            <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
+          </li>
+        <%}%>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div id="masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1><%=title%>
+          <p class="lead"></p>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel">
+        <div class="panel-body">
+
+          <!-- Display Clock -->
+          <div id="ClockDisplay"></div>
+          <script type="text/javascript">
+            function showTime() {
+              var date = new Date();
+              var h = date.getHours();
+              var m = date.getMinutes();
+              var s = date.getSeconds();
+              var session = "AM";
+              if(h == 0){
+                h = 12;
+              }
+              if(h > 12){
+                h = h - 12;
+                session = "PM";
+              }
+              h = (h < 10) ? "0" + h : h;
+              m = (m < 10) ? "0" + m : m;
+              s = (s < 10) ? "0" + s : s;
+              var time = h+":"+m+":"+s+" "+session;
+              document.getElementById("ClockDisplay").innerText = time;
+              document.getElementById("ClockDisplay").textContent = time;
+              setTimeout(showTime, 1000);
+            }
+            showTime();
+          </script>
+          
+          <!--/stories-->
+            <div class="row">
+              <br>
+              <div class="col-md-2 col-sm-3 text-center">
+                <a class="story-title" href="#"><img alt="" src="http://tachyondecay.net/images/blog/fb_performance.png" style="width:100px;height:100px" class="img-circle"></a>
+              </div>
+              <div class="col-md-10 col-sm-9">
+                <h3><%=courses.name%></h3>
+                <div class="row">
+                  <div class="col-xs-9">
+                    <h4><span class="label label-default"><%=courses.professor%></span></h4><h4>
+                    </h4></div>
+                  <div class="col-xs-3"></div>
+                </div>
+                <br><br>
+              </div>
+            </div>
+            <hr>
+          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+      </div>
+   	</div>
+  </div>
+</div>
+
+<hr>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+	</body>
+</html>

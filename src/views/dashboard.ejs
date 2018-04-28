@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title><%=title%></title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
-	</head>
-	<body>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title><%=title%></title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
   <div class="container">
     <div class="navbar-header">
@@ -69,24 +69,19 @@
                   var m = date.getMinutes();
                   var s = date.getSeconds();
                   var session = "AM";
-
                   if(h == 0){
                     h = 12;
                   }
-
                   if(h > 12){
                     h = h - 12;
                     session = "PM";
                   }
-
                   h = (h < 10) ? "0" + h : h;
                   m = (m < 10) ? "0" + m : m;
                   s = (s < 10) ? "0" + s : s;
-
                   var time = h+":"+m+":"+s+" "+session;
                   document.getElementById("ClockDisplay").innerText = time;
                   document.getElementById("ClockDisplay").textContent = time;
-
                   setTimeout(showTime, 1000);
                 }
                 showTime();
@@ -181,7 +176,6 @@
                             <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
                           </tr></table>
                       <%}%><%}%><%}%>
-
                       <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
                       if(day == 2){ if(dashboard[i].TuesdayE>hour){ if(dashboard[i].TuesdayS<hour){ %>
                         <table><tr>
@@ -196,7 +190,6 @@
                           <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
                         </tr></table>
                       <%}%><%}%><%}%>
-
                       <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
                       if(day == 3){ if(dashboard[i].WednesdayE>hour){ if(dashboard[i].WednesdayS<hour){ %>
                         <table><tr>
@@ -211,7 +204,6 @@
                           <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
                         </tr></table>
                       <%}%><%}%><%}%>
-
                       <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
                       if(day == 4){ if(dashboard[i].ThursdayE>hour){ if(dashboard[i].ThursdayS<hour){ %>
                         <table><tr>
@@ -226,7 +218,6 @@
                           <td><h4><%=dashboard[i].MondayE%><b>&nbsp;<%=dashboard[i].Mlocation%></b></h4></td>
                         </tr></table>
                       <%}%><%}%><%}%>
-
                       <% var d=new Date(); var day=d.getDay(); var end=d.getHours(); 
                       if(day == 5){ if(dashboard[i].FridayE > hour){ if(dashboard[i].FridayS<hour){ %>
                         <table><tr>
@@ -248,20 +239,16 @@
               </div>
             </div>
             <hr><br> <!-- divider -->
-
           <%}%> <!-- end of current office hours -->
           <%}%>
           <!--/show TA's END-->
-
         </div>
       </div>
-   	</div><!--/col-12-->
+    </div><!--/col-12-->
   </div>
 </div>
-
 <hr>
 <hr>
-
 <footer>
   <div class="container">
     <div class="row">
@@ -273,9 +260,8 @@
     </div>
   </div>
 </footer>
-
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	</body>
+  <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
