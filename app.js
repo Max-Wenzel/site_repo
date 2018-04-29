@@ -19,9 +19,9 @@ const cookieParser = require('cookie-parser');
 const app = express();
 // attempt PORT, if failed then use port 3000
 // for some reason process.env.PORT is causing a javascript throw error. If using a VM then just use:
-const port = 3000;
+// const port = 3000;
 // otherwise this should work...
-// const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // configuration for mssql
 const config = {
@@ -55,7 +55,7 @@ app.use(cookieParser());
 // secret is used to build the cookie
 app.use(session({secret: 'site',
                 saveUninitialized: true,
-                resave: true}));
+                resave: false}));
 
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
