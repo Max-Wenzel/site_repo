@@ -55,7 +55,7 @@ app.use(cookieParser());
 // secret is used to build the cookie
 app.use(session({secret: 'site',
                 saveUninitialized: true,
-                resave: true}));
+                resave: false}));
 
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
