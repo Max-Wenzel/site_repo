@@ -19,9 +19,9 @@ const cookieParser = require('cookie-parser');
 const app = express();
 // attempt PORT, if failed then use port 3000
 // for some reason process.env.PORT is causing a javascript throw error. If using a VM then just use:
-const port = 3000;
+// const port = 3000;
 // otherwise this should work...
-// const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // configuration for mssql
 const config = {
@@ -55,7 +55,7 @@ app.use(cookieParser());
 // secret is used to build the cookie
 app.use(session({secret: 'site',
                 saveUninitialized: true,
-                resave: true}));
+                resave: false}));
 
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
@@ -73,7 +73,9 @@ require('./src/config/passport.js')(app);
 const nav = [
   {link: '/dashboard', title: 'Dashboard'},
   {link: '/calendar', title: 'EDIT HOURS'},
-  {link: '/courses', title: 'My Courses'}
+  {link: '/courses', title: 'My Courses'},
+  {link: '/addcourse', title: 'Add Course'}
+
 ];
 
 // a router encapsulates all routes in one spot.
@@ -82,6 +84,7 @@ const bookRouter = require('./src/routes/bookRoutes')(nav);
 const courseRouter = require('./src/routes/courseRoutes')(nav);
 const authRouter = require('./src/routes/authRoutes')(nav);
 const calendarRouter = require('./src/routes/calendarRoutes')(nav);
+const addcourseRouter = require('./src/routes/addcourseRoutes')(nav);
 
 
 
@@ -90,6 +93,7 @@ app.use('/dashboard', bookRouter);
 app.use('/courses', courseRouter);
 app.use('/auth', authRouter);
 app.use('/calendar', calendarRouter);
+app.use('/addcourse', addcourseRouter);
 
 
 
@@ -101,7 +105,8 @@ app.get('/', (req, res) => {
   		nav: [
   			{link: '/dashboard', title: 'Dashboard'},
   			{link: '/calendar', title: 'EDIT HOURS'},
-        {link: '/courses', title: 'My Courses'}
+        {link: '/courses', title: 'My Courses'},
+        {link: '/addcourse', title: 'Add Course'}
   		],
   		title: 'SiTE',
       errors: req.session.errors

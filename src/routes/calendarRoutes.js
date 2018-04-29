@@ -55,15 +55,54 @@ function router(nav) {
 				req.session.errors = errors;
 			}
 
-			const { id, cid, name, course, MS, TS, WS, THS, FS, ME, TE,WE, THE, FE,ML,TL,WL,THL,FL } = req.body;
+			var { id, cid, name, course, MS, TS, WS, THS, FS, ME, TE,WE, THE, FE,ML,TL,WL,THL,FL } = req.body;
 			console.log(req.body.class);
 			const request = new sql.Request();
+
+			MS = req.body.MS;
+			MS = MS.replace(":",".");
+			MS = Number(MS);
+
+			TS = req.body.TS.replace(":",".");
+			TS = TS.replace(":",".");
+			TS = Number(TS);
+
+			WS = req.body.WS.replace(":",".");
+			WS = WS.replace(":",".");
+			WS = Number(WS);
+
+			THS = req.body.THS.replace(":",".");
+			THS = THS.replace(":",".");
+			THS = Number(THS);
+
+			FS = req.body.FS.replace(":",".");
+			FS = FS.replace(":",".");
+			FS = Number(FS);
+
+			ME = req.body.ME.replace(":",".");
+			ME = ME.replace(":",".");
+			ME = Number(ME);
+
+			TE = req.body.TE.replace(":",".");
+			TE = TE.replace(":",".");
+			TE = Number(TE);
+
+			WE = req.body.WE.replace(":",".");
+			WE = WE.replace(":",".");
+			WE = Number(WE);
+
+			THE = req.body.THE.replace(":",".");
+			THE = THE.replace(":",".");
+			THE = Number(THE);
+
+			FE = req.body.FE.replace(":",".");
+			FE = FE.replace(":",".");
+			FE = Number(FE);
 
 			(async function addUser(){
 				//let client;
 				try {
-					const result = await request.query("UPDATE assistants SET MondayS = "+req.body.MS+", TuesdayS ="+req.body.TS+", WednesdayS = "+req.body.WS+", ThursdayS ="+req.body.THS+", FridayS = "+req.body.FS+", MondayE = "+req.body.ME+", TuesdayE ="+req.body.TE+", WednesdayE = "+req.body.WE+", ThursdayE ="+req.body.THE+", FridayE = "+req.body.FE+" WHERE id = "+req.body.id)
-					//const results = await request.query("insert into assistants (id,cid,full_name,class,MondayS,TuesdayS,WednesdayS,ThursdayS,FridayS,MondayE,TuesdayE,WednesdayE,ThursdayE,FridayE,Mlocation,Tlocation,Wlocation,THlocation,Flocation) values("+req.body.id+","+req.body.cid+",'"+req.body.full_name+"','"+req.body.classs+"',"+req.body.MondayS+","+req.body.TuesdayS+","+req.body.WednesdayS+","+req.body.ThursdayS+","+req.body.FridayS+","+req.body.MondayE+","+req.body.TuesdayE+","+req.body.WednesdayE+","+req.body.ThursdayE+","+req.body.FridayE+",'"+req.body.MondayL+"','"+req.body.TuesdayL+"','"+req.body.WednesdayL+"','"+req.body.ThursdayL+"','"+req.body.FridayL+"')");
+					const result = await request.query("UPDATE assistants SET MondayS = "+MS+", TuesdayS ="+TS+", WednesdayS = "+WS+", ThursdayS ="+THS+", FridayS = "+FS+", MondayE = "+ME+", TuesdayE = "+TE+", WednesdayE = "+WE+", ThursdayE = "+THE+", FridayE = "+FE+" WHERE id = "+req.body.id);
 					debug('Connected correctly to server');
 				
 					
