@@ -8,14 +8,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+    	</script>
 		<link href="css/styles.css" rel="stylesheet">
 	</head>
-	<body>
+<body>
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
   <div class="container">
     <div class="navbar-header">
@@ -88,46 +85,42 @@
             }
             showTime();
           </script>
-          <hr>
-          
-          <!--/stories-->
-          <!-- SHows forms to add courses for TA's only -->
 
-          <h2><b>Add a course</b></h2>
+          <div class="row">
+            <div class="col-xs-10" style="font-family:courier">
+              <h2>Add a course</h2>
+              <h5>As a Teacher assistant, create a class with your user ID and a unique CID</h5>
+              <hr>
+            </div>
+            <div class="col-xs-2"></div>
+          </div>
+
+
+    	  
+          <!-- Forms to add courses for TA's only -->
           <br>
-         
-          <form method="post" action="/addcourse/submit" >
-          <div class="form-field">
-        <label for="id">ID: </label>
-          <input class="input" id="id" name="id" type="number" />
-          </div>
-             <div class="form-field">
-        <label for="id">CID: </label>
-          <input class="input" id="cid" name="cid" type="number" />
-          </div>
-          <div class="form-field">
-            <label for="cid">Class name: </label>
-            <input class="input" id="cname" name="cname" type="string"  />
-            </div>
-             <div class="form-field">
-        <label for="id">Professor: </label>
-          <input class="input" id="prof" name="prof" type="string" />
-          </div>
-            <div class="form-actions">
-            <input type="submit" value="submit">
-            </div>
-            </form>
-
-              
-
-          <div id="mainform">
-            <div class="innerdiv">
-                <div id="clear"></div>
-                </div>
-                <div id="clear"></div>
-                </div>
-                
-          <!--/stories-->
+          <form method="post" action="/addcourse/submit" style="">
+	          <div class="form-field">
+	       		  <label for="id">ID:</label>
+	          	<input class="input" id="id" name="id" type="number" style="background-color:#ecf2ef; width:110px"/>
+	          </div>
+	            <div class="form-field">
+	        	  <label for="id">CID: </label>
+	          	<input class="input" id="cid" name="cid" type="number" style="background-color:#ecf2ef; width:100px"/>
+	          </div>
+	          <div class="form-field">
+	            <label for="cid">Class name: </label>
+	            <input class="input" id="cname" name="cname" type="string"  style="background-color:#ecf2ef; width:200px"/>
+	          </div>
+	          <div class="form-field">
+	        	<label for="id">Professor: </label>
+	          	<input class="input" id="prof" name="prof" type="string" style="background-color:#ecf2ef; width:215px"/>
+	          </div>
+	          <div class="form-actions">
+	          	<input type="submit" value="submit" style="font-size:18px">
+	          </div>
+          </form>
+             
           <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
         </div>
       </div>
@@ -140,10 +133,8 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
-        </ul>
+      <div class="col-sm-12">
+          <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>
   </div>
