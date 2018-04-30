@@ -53,87 +53,58 @@
       <div class="panel">
         <div class="panel-body">
 
-          <!--DESCRIPTION-->
           <div class="row">
-            <br>
             <div class="col-md-10 col-sm-9">
-              <h3>Welcome to SiTE!</h3>
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4 style="font-family:courier,'new courier';" class="text-muted">
-                  	With your account, you can check your class schedule, TA and Professor office hours times and locations, as well as check whether they are present!
-                  </h4>
-              </div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
+              <!-- Display Clock -->
+              <div id="ClockDisplay" style="font-size:20px"></div>
+              <script type="text/javascript">
+                function showTime() {
+                  var date = new Date();
+                  var h = date.getHours();
+                  var m = date.getMinutes();
+                  var s = date.getSeconds();
+                  var session = "AM";
+
+                  if(h == 0){
+                    h = 12;
+                  }
+
+                  if(h > 12){
+                    h = h - 12;
+                    session = "PM";
+                  }
+
+                  h = (h < 10) ? "0" + h : h;
+                  m = (m < 10) ? "0" + m : m;
+                  s = (s < 10) ? "0" + s : s;
+
+                  var time = h+":"+m+":"+s+" "+session;
+                  document.getElementById("ClockDisplay").innerText = time;
+                  document.getElementById("ClockDisplay").textContent = time;
+
+                  setTimeout(showTime, 1000);
+                }
+                showTime();
+              </script>
             </div>
           </div>
-          <!--/DESCRIPTION-->
+          <hr>
 
-          <!--ACCOUNT INFORMATION-->
-          <div class="row">
-            <br>
-            <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#">
-              	<img alt="Profile Picture" src="http://api.randomuser.me/portraits/thumb/women/56.jpg" style="width:130px;height:130px"
-              	class="img-circle">
-              	<!-- show STUDENT IMAGE here -->
-              </a>
-            </div>
-            <hr size="80px">
-            <div class="col-md-10 col-sm-9">
-              <h3>
-              	STUDENT NAME
-              	<!-- SHOW Student name here -->
-              </h3>
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4>
-                  	<b>
-                  	<span class="label label-default">
-                  		STUDENT USERNAME
-                  		<!-- SHOW student username here -->
-                  	</span>
-                  	</b>
-                  </h4>
-              </div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
-            </div>
-          </div>
-          <!--/ACCOUNT INFORMATION-->
-
-          <!--SHOW CLASSES-->
+          <!--SIGN IN BOX-->
           <div class="row">
             <div class="col-md-10 col-sm-9">
-              <h3><u>
-              	My Classes
-              </u></h3>
-              <br>
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4 style="font-family:courier,'new courier';"
-                  class="text-muted">
-                  	LIST CLASSES HERE
-                  	<!-- Use a for loop here to show ONLY THE NAME
-						of each class here -->
-                  </h4>
-              </div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
-              Sign In!
               <form name="signInForm" action="/auth/signin" method="post">
-                UserName: <input name="username" id="username"><br/>
-                Password: <input type="password" name="password" id="password"><br/>
-                <input type="submit" value="Sign in">
+                <h3>UserName:</h3> 
+                <input name="username" type="text" id="username" style="background-color:#ecf2ef" >
+                <br/>
+                <h3>Password:</h3> 
+                <input type="password" name="password" id="password" style="background-color:#ecf2ef" >
+                <br><br>
+                <input type="submit" value="Sign in" style="font-size:18px">
               </form>
             </div>
           </div>
 
-          <!--/SHOW CLASSES-->
         </div>
       </div>
    	</div><!--/col-12-->
@@ -145,10 +116,8 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
-        </ul>
+      <div class="col-sm-12">
+          <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>
   </div>
