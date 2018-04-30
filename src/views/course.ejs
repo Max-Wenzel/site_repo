@@ -24,7 +24,6 @@
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <!-- Same functionality as what's in index.ejs -->
         <%for (let i=0; i<nav.length; i++) {%>
           <li>
             <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
@@ -54,7 +53,7 @@
         <div class="panel-body">
 
           <!-- Display Clock -->
-          <div id="ClockDisplay"></div>
+          <div id="ClockDisplay" style="font-size:20px"></div>
           <script type="text/javascript">
             function showTime() {
               var date = new Date();
@@ -79,26 +78,68 @@
             }
             showTime();
           </script>
+          <hr>
           
-          <!--/stories-->
+          <!--/show specific TA-->
             <div class="row">
               <br>
               <div class="col-md-2 col-sm-3 text-center">
                 <a class="story-title" href="#"><img alt="" src="http://tachyondecay.net/images/blog/fb_performance.png" style="width:100px;height:100px" class="img-circle"></a>
               </div>
               <div class="col-md-10 col-sm-9">
-                <h3><%=courses.name%></h3>
+                <h3><%=courses.class%></h3>
                 <div class="row">
                   <div class="col-xs-9">
-                    <h4><span class="label label-default"><%=courses.professor%></span></h4><h4>
-                    </h4></div>
+                    <h4>
+                      <span class="label label-default"><%=courses.full_name%></span>
+                    </h4>
+                    <% var times = [
+                        courses.MondayS,
+                        courses.MondayE,
+                        courses.TuesdayS, 
+                        courses.TuesdayE,
+                        courses.WednesdayS, 
+                        courses.WednesdayE,
+                        courses.ThursdayS, 
+                        courses.ThursdayE,
+                        courses.FridayS, 
+                        courses.FridayE
+                    ];
+                    var spots = [
+                        "Monday:",
+                        courses.Mlocation,
+                        "Tuesday",
+                        courses.Tlocation,
+                        "Wednesday",
+                        courses.Wlocation,
+                        "Thursday",
+                        courses.THlocation,
+                        "Friday",
+                        courses.Flocation
+                    ];
+                    
+
+                    for (let i = 0; i < 9; i+=2) {
+                      if(times[i] != 0){   if(times[i+1] != 0) { %> 
+                        <table><tr>
+                          <td><h4>
+                            <u><b><%=spots[i]%></b></u>&ensp;<%=times[i]%>
+                          </h4></td>
+                          <td><h4> - </h4></td>
+                          <td><h4>
+                            <%=times[i+1]%><b>&nbsp;<%=spots[i+1]%></b>
+                          </h4></td>
+                        </tr></table>
+                    <% }}} %>
+
+                  </div>
                   <div class="col-xs-3"></div>
                 </div>
                 <br><br>
               </div>
             </div>
             <hr>
-          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+          <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
         </div>
       </div>
    	</div>
@@ -110,9 +151,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
-        </ul>
+        <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>
   </div>

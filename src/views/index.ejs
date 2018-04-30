@@ -59,7 +59,7 @@
             <div class="col-md-10 col-sm-9">
               
               <!-- Display Clock -->
-              <div id="ClockDisplay"></div>
+              <div id="ClockDisplay" style="font-size:20px"></div>
               <script type="text/javascript">
                 function showTime() {
                   var date = new Date();
@@ -141,22 +141,11 @@
           <!--SHOW CLASSES-->
           <div class="row">
             <div class="col-md-10 col-sm-9">
-              <h3><u>
-              	My Classes
-              </u></h3>
+              <h3><u>Sign In</u></h3>
+              
               <br>
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4 style="font-family:courier,'new courier';"
-                  class="text-muted">
-                  	LIST CLASSES HERE
-                  	<!-- Use a for loop here to show ONLY THE NAME
-						of each class here -->
-                  </h4>
-              </div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
+              <br>
+
               Sign Up! Or <a href="/auth/signin">sign in</a>
               <form name="signUpForm" action="/auth/signUp" method="post">
                 UserName: <input name="username" id="username"><br/>
@@ -184,9 +173,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
-        </ul>
+          <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>
   </div>
