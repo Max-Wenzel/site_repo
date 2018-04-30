@@ -58,7 +58,7 @@
         <div class="panel-body">
 
           <!-- Display Clock -->
-          <div id="ClockDisplay"></div>
+          <div id="ClockDisplay" style="font-size:20px"></div>
           <script type="text/javascript">
             function showTime() {
               var date = new Date();
@@ -88,16 +88,13 @@
             }
             showTime();
           </script>
+          <hr>
           
-
-
           <!--/stories-->
-          <!-- This is going to loop over courses to recreate the home page except it will  be the list of courses -->
-          <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
+          <!-- SHows forms to add courses for TA's only -->
 
-
-
-          Add a course:
+          <h2><b>Add a course</b></h2>
+          <br>
          
           <form method="post" action="/addcourse/submit" >
           <div class="form-field">
@@ -125,16 +122,13 @@
 
           <div id="mainform">
             <div class="innerdiv">
-              <h2></h2>
-                <!-- Required Div Starts Here -->
-                
-                    <div id="clear"></div>
-                    </div>
-                  <div id="clear"></div>
+                <div id="clear"></div>
+                </div>
+                <div id="clear"></div>
                 </div>
                 
           <!--/stories-->
-          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+          <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
         </div>
       </div>
    	</div><!--/col-12-->
