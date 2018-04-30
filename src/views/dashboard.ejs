@@ -54,14 +54,13 @@
     <div class="col-md-12">
       <div class="panel">
         <div class="panel-body">
-
-          <!-- HEADER START -->
+          <!-- BODY START -->
           <div class="row">
               <br>
               <div class="col-md-10 col-sm-9">
 
               <!-- Display Clock -->
-              <div id="ClockDisplay"></div>
+              <div id="ClockDisplay" style="font-size:20px"></div>
               <script type="text/javascript">
                 function showTime() {
                   var date = new Date();
@@ -105,11 +104,9 @@
           <br>
           <!-- HEADER END -->
 
-          <!-- SHOW TA's START-->
-          <!-- This is going to loop over dashboard to recreate the home page except it will  be the list of dashboard -->
-          <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
-          <%for (let i=0; i<dashboard.length; i++) {%>                 
-          <% var d = new Date();
+          <!-- SHOW TA's START: shows only current and upcoming TA's for the day-->
+          <%for (let i=0; i<dashboard.length; i++) { %>  
+          		<% var d = new Date();
                  var day = d.getDay();
                 var hour = String(d.getHours());
                  var minute = String(d.getMinutes());
@@ -143,7 +140,9 @@
                     var end = dashboard[i].FridayE;
                     var spot = dashboard[i].Flocation;
                   }
-                 if((begin <= hour) && (end >= hour)){
+                  if((begin <= hour) && (end >= hour)){
+                 	  inc = 1;
+
                       var BAMPM = 'AM';
                       var EAMPM = 'AM';
 
@@ -181,9 +180,8 @@
                         }
                         if(end.charAt(1) != ":"){
                             end = end + "0";
-                        }
+                        } %>
 
-                        %>
             <div class="row">
               <div class="col-md-2 col-sm-3 text-center">
                       <a class="story-title" href="#">
@@ -213,13 +211,12 @@
               </div>
             </div>
 
-            <hr><br> <!-- divider --> <!-- end of current office hours -->
-            <%}%>
-          <%}%>
-
-            <!-- end of for -->
-
-          <!--/show TA's END-->
+            <hr>
+            <br>
+            <% } %> <!-- end of each office hour -->
+        <% } %> <!--/show TA's END-->
+        <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
+        
         </div>
       </div>
     </div><!--/col-12-->
@@ -231,9 +228,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 at CU-Boulder- Spring 2018</li>
-        </ul>
+        <h5>A project created for CSCI 3308 at CU-Boulder- Spring 2018</h5>
       </div>
     </div>
   </div>

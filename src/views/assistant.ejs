@@ -24,7 +24,6 @@
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <!-- Same functionality as what's in index.ejs -->
         <%for (let i=0; i<nav.length; i++) {%>
           <li>
             <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
@@ -54,7 +53,7 @@
         <div class="panel-body">
 
           <!-- Display Clock -->
-          <div id="ClockDisplay"></div>
+          <div id="ClockDisplay" style="font-size:20px"></div>
           <script type="text/javascript">
             function showTime() {
               var date = new Date();
@@ -165,9 +164,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
-        </ul>
+          <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>
   </div>

@@ -58,7 +58,7 @@
         <div class="panel-body">
 
           <!-- Display Clock -->
-          <div id="ClockDisplay"></div>
+          <div id="ClockDisplay" style="font-size:20px"></div>
           <script type="text/javascript">
             function showTime() {
               var date = new Date();
@@ -88,81 +88,73 @@
             }
             showTime();
           </script>
+          <br>
           
+          <!--/body-->
+          <!-- this form allows TA's (only) to edit hours for their classes -->
 
-
-          <!--/stories-->
-          <!-- This is going to loop over courses to recreate the home page except it will  be the list of courses -->
-          <!-- the ejs and html syntax might confuse your text editor, but the below code works. -->
-
-
-
-          Edit TA Hours:
-          <head>USE ARMY TIME</head>
+         <h2>Edit TA Hours</h2>
+         <h5>Input hours with army time with the form: '3:30pm' = '15.30'</h5>
+      	  <br>
           <form method="post" action="/calendar/submit" >
-          <div class="form-field">
-        <label for="id">ID: </label>
-          <input class="input" id="id" name="id" type="number" />
-          </div>
-             <div class="form-field">
-        <label for="id">Monday Start: </label>
-          <input class="input" id="MS" name="MS" type="string" /> 
-          </div>
-          <div class="form-field">
-            <label for="cid">Tuesday Start: </label>
-            <input class="input" id="TS" name="TS" type="string"  />
+          	<div class="form-field">
+        		<label for="id">ID: </label>
+          		<input class="input" id="id" name="id" type="number" />
+          	</div>
+            <div class="form-field">
+        		<label for="id">Monday Start: </label>
+          		<input class="input" id="MS" name="MS" type="string" /> 
+          	</div>
+          	<div class="form-field">
+            	<label for="cid">Tuesday Start: </label>
+            	<input class="input" id="TS" name="TS" type="string"  />
             </div>
-             <div class="form-field">
-        <label for="id">Wednesday Start: </label>
-          <input class="input" id="WS" name="WS" type="string" />
-          </div>
-          <div class="form-field">
-            <label for="cid">Thursday Start: </label>
-            <input class="input" id="THS" name="THS" type="string"  />
+            <div class="form-field">
+        		<label for="id">Wednesday Start: </label>
+          		<input class="input" id="WS" name="WS" type="string" />
             </div>
-             <div class="form-field">
-        <label for="id">Friday Start: </label>
-          <input class="input" id="FS" name="FS" type="string" />
-          </div>
-           <div class="form-field">
-        <label for="id">Monday End: </label>
-          <input class="input" id="ME" name="ME" type="string" />
-          </div>
-          <div class="form-field">
-            <label for="cid">Tuesday End: </label>
-            <input class="input" id="TE" name="TE" type="string"  />
+            <div class="form-field">
+            	<label for="cid">Thursday Start: </label>
+            	<input class="input" id="THS" name="THS" type="string"  />
             </div>
-             <div class="form-field">
-        <label for="id">Wednesday End: </label>
-          <input class="input" id="WE" name="WE"  type="string" />
-          </div>
-          <div class="form-field">
-            <label for="cid">Thursday End: </label>
-            <input class="input" id="THE"  name="THE" type="string"  />
+            <div class="form-field">
+        		<label for="id">Friday Start: </label>
+          		<input class="input" id="FS" name="FS" type="string" />
+          	</div>
+            <div class="form-field">
+        		<label for="id">Monday End: </label>
+          		<input class="input" id="ME" name="ME" type="string" />
+          	</div>
+          	<div class="form-field">
+            	<label for="cid">Tuesday End: </label>
+            	<input class="input" id="TE" name="TE" type="string"  />
             </div>
-             <div class="form-field">
-        <label for="id">Friday End: </label>
-          <input class="input" id="FE" name="FE"  type="string" />
-          </div>
+            <div class="form-field">
+        		<label for="id">Wednesday End: </label>
+          		<input class="input" id="WE" name="WE"  type="string" />
+          	</div>
+          	<div class="form-field">
+            	<label for="cid">Thursday End: </label>
+            	<input class="input" id="THE"  name="THE" type="string"  />
+            </div>
+            <div class="form-field">
+        		<label for="id">Friday End: </label>
+          		<input class="input" id="FE" name="FE"  type="string" />
+            </div>
             <div class="form-actions">
-            <input type="submit" value="submit">
+            	<input type="submit" value="submit">
             </div>
             </form>
 
-              
-
-          <div id="mainform">
-            <div class="innerdiv">
-              <h2>Edit TA hours</h2>
-                <!-- Required Div Starts Here -->
-                
-                    <div id="clear"></div>
-                    </div>
-                  <div id="clear"></div>
+          	<div id="mainform">
+            	<div class="innerdiv">
+                	<div id="clear"></div>
                 </div>
+                <div id="clear"></div>
+            </div>
                 
-          <!--/stories-->
-          <a href="/" class="btn btn-primary pull-right btnNext">Home<i class="glyphicon glyphicon-chevron-right"></i></a>
+          	<!--/stories-->
+          	<a href="/" class="btn btn-primary pull-right btnNext">Home</a>
         </div>
       </div>
    	</div><!--/col-12-->
@@ -175,9 +167,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <ul class="list-inline">
-          <li>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</li>
-        </ul>
+        <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>
   </div>
