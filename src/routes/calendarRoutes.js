@@ -65,7 +65,7 @@ function router(nav) {
 				req.session.errors = errors;
 			}
 
-			var { id, cid, name, course, MS, TS, WS, THS, FS, ME, TE,WE, THE, FE,ML,TL,WL,THL,FL } = req.body;
+			var {cid, name, course, MS, TS, WS, THS, FS, ME, TE,WE, THE, FE,ML,TL,WL,THL,FL } = req.body;
 			console.log(req.body.class);
 			const request = new sql.Request();
 
@@ -112,7 +112,7 @@ function router(nav) {
 			(async function addUser(){
 				//let client;
 				try {
-					const result = await request.query("UPDATE assistants SET MondayS = "+MS+", TuesdayS ="+TS+", WednesdayS = "+WS+", ThursdayS ="+THS+", FridayS = "+FS+", MondayE = "+ME+", TuesdayE = "+TE+", WednesdayE = "+WE+", ThursdayE = "+THE+", FridayE = "+FE+" WHERE id = "+req.body.id);
+					const result = await request.query("UPDATE assistants SET MondayS = "+MS+", TuesdayS ="+TS+", WednesdayS = "+WS+", ThursdayS ="+THS+", FridayS = "+FS+", MondayE = "+ME+", TuesdayE = "+TE+", WednesdayE = "+WE+", ThursdayE = "+THE+", FridayE = "+FE+" WHERE id = "+req.userdata.uid);
 					debug('Connected correctly to server');
 				
 					

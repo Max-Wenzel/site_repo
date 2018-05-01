@@ -62,32 +62,14 @@ function router(nav) {
 							var hash = passwordHash.generate(req.body.password);
 							const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
 							var tuba = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+hash+"'");
-							var lit = ''
 							var dataString = tuba.recordset[0].id;
-							if (tuba.recordset[0].type == 1)
-							{
-								lit = '/dashboard/' + dataString;
+							var	lit = '/dashboard/' + dataString;
+							if (tuba.recordset[0].type == 2){
+								lit = '/calendar';
 							}
-							else
-							{
-								lit = '/calendar/';
-
-							}
-			
 
 							if(tuba.recordset.length > 0){
-								const t = jwt.sign({
-									email: tuba.recordset[0].username,
-									uid: tuba.recordset[0].id,
-									type: tuba.recordset[0].type
-
-									}, "superSecret",{
-									expiresIn: "1h"
-									},
-
-								);
-								req.session.token = t;
-								res.redirect(lit);
+								res.redirect('/signin');
 								}
 							else{
 								res.redirect('/');
