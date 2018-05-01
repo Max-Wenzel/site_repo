@@ -27,7 +27,10 @@
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
             <li>
-            <a href="<%=nav[1].link%>"><%=nav[1].title%></a>
+            <a href="<%=nav[0].link + '/' + id%>"><%=nav[0].title%></a>
+            </li>
+            <li>
+            <a href="<%=nav[2].link %>"><%=nav[2].title%></a>
             </li>
             <li>
             <a href="<%=nav[3].link %>"><%=nav[3].title%></a>
@@ -101,10 +104,11 @@
           <!-- Forms to add courses for TA's only -->
           <br>
           <form method="post" action="/addcourse/submit" style="">
+<!--           
 	          <div class="form-field">
 	       		  <label for="id">ID:</label>
 	          	<input class="input" id="id" name="id" type="number" style="background-color:#ecf2ef; width:110px"/>
-	          </div>
+	          </div> -->
 	            <div class="form-field">
 	        	  <label for="id">CID: </label>
 	          	<input class="input" id="cid" name="cid" type="number" style="background-color:#ecf2ef; width:100px"/>
