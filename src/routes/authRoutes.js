@@ -93,7 +93,8 @@ function router(nav) {
 						
 					
 				}());
-				
+
+				res.redirect('/');
 
 			}
 			//res.end();
@@ -113,37 +114,29 @@ function router(nav) {
 		});
 		
 	authRouter.route('/signin')
-		.get((req, res) => {
-			res.render('signin', {
-				nav,
-				title: 'Sign In'
-			});
-		})
 		.post((req, res,next) => {
 			
-			const { username, password } = req.body;
 			const request = new sql.Request();
 
 			(async function checkUser(){
 				//let client;
 				try {
-					//var hash = passwordHash.generate(req.body.password);
-					const result = await request.query("select id, password from login where username = '"+req.body.username+"'");
+
+					const result = await request.query("select * from login where username = '"+req.body.username+"';");
 					//var id = await request.query("select id from login where username = '"+req.body.username+"'");
 					debug('Connected correctly to server');
-					const user = { username, password };
-					debug(user)
-					console.log(result);
+					//const user = { username, password };
+					debug(result);
+					//var dataString = result.recordset[0].id;
+					//var lit = Number(dataString);
 
-					var dataString = result.recordset[0].id;
-					var hashed = result.recordset[0].password;
-					var lit = Number(dataString);
-		
-					if(passwordHash.verify(req.body.password, hashed)){
-						res.redirect('/dashboard/'+lit);
+					if(result.recordset.length < 1){
+						req.session.found = 'Login Failed';
+						res.redirect('back');
 						}
 					else{
-						res.redirect('/');
+						//bcrypt.compare(req.body.password, result.recordset[0].password)
+						res.redirect('back');
 					}
 
 					
@@ -185,7 +178,7 @@ function router(nav) {
 		.get((req, res) => {
 			res.json(req,user);
 		});
-	return authRouter
-};
+	return authRouter;
+}
 
 module.exports = router;

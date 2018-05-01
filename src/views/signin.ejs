@@ -91,10 +91,24 @@
           <hr>
 
           <!--SIGN IN BOX-->
+          <% if (error) {%>
+              <ul/>
+                <% for (var i = 0; i < error.length; i++){ %>
+                <li>
+                  <%=error[i].msg%>
+                </li>
+                <%}%>
+              </ul>
+          <%}%>
+          <% if (found) {%>
+            <p>
+            <%=found%>
+            </p>
+          <%}%>
           <div class="row">
             <div class="col-md-10 col-sm-9">
               <form name="signInForm" action="/auth/signin" method="post">
-                <h3>UserName:</h3> 
+                <h3>Email:</h3> 
                 <input name="username" type="text" id="username" style="background-color:#ecf2ef" >
                 <br/>
                 <h3>Password:</h3> 

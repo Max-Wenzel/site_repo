@@ -88,6 +88,7 @@ const courseRouter = require('./src/routes/courseRoutes')(nav);
 const authRouter = require('./src/routes/authRoutes')(nav);
 const calendarRouter = require('./src/routes/calendarRoutes')(nav);
 const addcourseRouter = require('./src/routes/addcourseRoutes')(nav);
+const signinRouter = require('./src/routes/signinRoutes')(nav);
 
 
 
@@ -97,6 +98,8 @@ app.use('/courses', courseRouter);
 app.use('/auth', authRouter);
 app.use('/calendar', calendarRouter);
 app.use('/addcourse', addcourseRouter);
+app.use('/signin', signinRouter);
+
 
 
 
