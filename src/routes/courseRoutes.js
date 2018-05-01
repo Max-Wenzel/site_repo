@@ -3,6 +3,7 @@ const courseRouter = express.Router();
 const sql = require('mssql');
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:courseRoutes');
+const sessioncheck = require('../routes/sessionCheck');
 
 function router(nav) {
 
@@ -19,7 +20,16 @@ function router(nav) {
 	*/
 
 		courseRouter.route('/')
-		.get((req, res) => {
+		.get(sessioncheck,(req, res, next) => {
+			if (req.userdata.type == 1)
+			{
+				next();
+			}
+			else
+			{
+				res.status(401).send('Auth Failed');
+			}
+		}, (req, res) => {
 /*
 	Inside a function marked as async, you are allowed to place the await keyword
 	in front of an expression that returns a promise. When you do, the execution of
@@ -48,7 +58,16 @@ function router(nav) {
 		});
 
 		courseRouter.route('/:id')
-		.get((req, res) => {
+		.get(sessioncheck,(req, res, next) => {
+			if (req.userdata.type == 1)
+			{
+				next();
+			}
+			else
+			{
+				res.redirect('/calender');
+			}
+		},(req, res) => {
 			(async function query(){
 				
 				const id = req.params.id;

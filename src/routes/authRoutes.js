@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:authRoutes');
 var passwordHash = require('password-hash');
+const jwt = require('jsonwebtoken');
+const sessioncheck = require('../routes/sessionCheck');
 
 const authRouter = express.Router();
 
@@ -73,8 +75,7 @@ function router(nav) {
 							}
 						}
 						else{
-							//errors = [{msg: "Account Already Exists"}];
-
+							errors = [{msg: "Account Already Exists"}];
 							req.session.errors = errors;
 
 							res.redirect('/');
@@ -128,7 +129,7 @@ function router(nav) {
 					//var id = await request.query("select id from login where username = '"+req.body.username+"'");
 					debug('Connected correctly to server');
 					//const user = { username, password };
-					debug(result);
+					//debug(result);
 					//var dataString = result.recordset[0].id;
 					//var lit = Number(dataString);
 
@@ -139,9 +140,20 @@ function router(nav) {
 					else{
 						//bcrypt.compare(req.body.password, result.recordset[0].password)
 						const login = passwordHash.verify(req.body.password, result.recordset[0].password);
-						debug(login);
+						//debug(login);
 						var address = '/dashboard/'+result.recordset[0].id;
 						if (login){
+							const t = jwt.sign({
+								email: req.body.username,
+								uid: result.recordset[0].id,
+								type: result.recordset[0].type
+
+							}, "superSecret",{
+								expiresIn: "1h"
+							},
+
+							);
+							req.session.token = t;
 							res.redirect(address);
 						} else{
 							req.session.found = 'Login Failed';
@@ -165,7 +177,7 @@ function router(nav) {
 			//res.end();
 
 
-			debug(req.body);
+			//debug(req.body);
 			//res.redirect('/dashboard');
 			//res.json(req.body);
 			

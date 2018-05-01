@@ -4,6 +4,7 @@ const sql = require('mssql');
 const { check, validationResult } = require('express-validator/check')
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:calendarRoutes');
+const sessioncheck = require('../routes/sessionCheck');
 
 function router(nav) {
 
@@ -20,7 +21,16 @@ function router(nav) {
 	*/
 
 		calendarRouter.route('/')
-		.get((req, res) => {
+		.get(sessioncheck, (req, res, next) => {
+			if (req.userdata.type == 2)
+			{
+				next();
+			}
+			else
+			{
+				res.status(401).send('Auth Failed');
+			}
+		},(req, res) => {
 /*
 	Inside a function marked as async, you are allowed to place the await keyword
 	in front of an expression that returns a promise. When you do, the execution of
@@ -111,7 +121,7 @@ function router(nav) {
 				}
 				}());
 
-				res.redirect('/dashboard');
+				res.redirect('back');
 			});
 						
 						
