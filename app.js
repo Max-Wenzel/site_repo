@@ -52,10 +52,7 @@ app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// secret is used to build the cookie
-app.use(session({secret: 'site',
-                saveUninitialized: true,
-                resave: false}));
+
 
 // __dirname is the location of the current executable
 app.use(express.static(path.join(__dirname, '/public')));
@@ -65,6 +62,12 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
+
+// secret is used to build the cookie
+
+app.use(session({secret: 'site',
+                saveUninitialized: true,
+                resave: false}));
 
 // passport used for user authentication
 require('./src/config/passport.js')(app);
@@ -112,6 +115,7 @@ app.get('/', (req, res) => {
       errors: req.session.errors
   	}
   );
+  req.session.errors = null;
 });
 
 app.listen(port, () => {
