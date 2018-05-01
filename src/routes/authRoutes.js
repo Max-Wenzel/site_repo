@@ -57,26 +57,28 @@ function router(nav) {
 						});*/
 						const check = await request.query("select * from login where username = '"+req.body.username+"'");
 						if(check.recordset.length == 0){
-						var hash = passwordHash.generate(req.body.password);
-						const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
-						var tuba = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+hash+"'");
+							var hash = passwordHash.generate(req.body.password);
+							const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
+							var tuba = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+hash+"'");
 
-						var dataString = tuba.recordset[0].id;
-						var lit = Number(dataString);
-		
+							var dataString = tuba.recordset[0].id;
+							var lit = '/dashboard/' + dataString;
+			
 
-						if(tuba.recordset.length > 0){
-							res.redirect('/dashboard/'+lit);
+							if(tuba.recordset.length > 0){
+								res.redirect(lit);
+								}
+							else{
+								res.redirect('/');
 							}
+						}
 						else{
+							//errors = [{msg: "Account Already Exists"}];
+
+							req.session.errors = errors;
+
 							res.redirect('/');
 						}
-					}
-					else{
-						req.session.errors = errors;
-
-						res.redirect('/');
-					}
 
 
 
@@ -94,7 +96,7 @@ function router(nav) {
 					
 				}());
 
-				res.redirect('/');
+				//res.redirect('/');
 
 			}
 			//res.end();
@@ -136,7 +138,15 @@ function router(nav) {
 						}
 					else{
 						//bcrypt.compare(req.body.password, result.recordset[0].password)
-						res.redirect('back');
+						const login = passwordHash.verify(req.body.password, result.recordset[0].password);
+						debug(login);
+						var address = '/dashboard/'+result.recordset[0].id;
+						if (login){
+							res.redirect(address);
+						} else{
+							req.session.found = 'Login Failed';
+							res.redirect('back');
+						}
 					}
 
 					
