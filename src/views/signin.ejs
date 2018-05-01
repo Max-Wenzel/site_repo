@@ -20,7 +20,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Home</a>
+      <a href="/" class="navbar-brand"></a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
@@ -93,11 +93,11 @@
 
           <!--SIGN IN BOX-->
           <% if (error) {%>
-              <ul/>
+               <ul/>
                 <% for (var i = 0; i < error.length; i++){ %>
-                <li>
-                  <%=error[i].msg%>
-                </li>
+		            <li class = "error">
+		                <%=error[i].msg%>
+		            </li>
                 <%}%>
               </ul>
           <%}%>
