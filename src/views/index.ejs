@@ -25,11 +25,11 @@
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <!-- This is using ejs (embedded javascript templating) to access the objects in nav (located in app.js) that will appear in the navigation bar. -->
-        <%for (let i=0; i<nav.length; i++) {%>
+ <!--        <%for (let i=0; i<nav.length; i++) {%>
           <li>
             <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
           </li>
-        <%}%>
+        <%}%> -->
       </ul>
     </nav>
   </div>
@@ -107,29 +107,29 @@
           
 
           <!--ACCOUNT INFORMATION-->
-          <div class="row">
+          <!-- div class="row">
             <br>
             <div class="col-md-2 col-sm-3 text-center">
               <a class="story-title" href="#">
               	<img alt="Profile Picture" src="http://api.randomuser.me/portraits/thumb/women/56.jpg" style="width:130px;height:130px;font-family:courier;"
-              	class="img-circle">
+              	class="img-circle"> -->
               	<!-- show STUDENT IMAGE here -->
-              </a>
+<!--               </a>
             </div>
             <hr size="80px">
             <div class="col-md-10 col-sm-9">
               <h3>
-              	STUDENT NAME
+              	STUDENT NAME -->
               	<!-- SHOW Student name here -->
-              </h3>
+<!--               </h3>
               <div class="row">
                 <div class="col-xs-9">
                   <h4>
                   	<b>
                   	<span class="label label-default">
-                  		STUDENT USERNAME
+                  		STUDENT USERNAME -->
                   		<!-- SHOW student username here -->
-                  	</span>
+<!--                   	</span>
                   	</b>
                   </h4>
               </div>
@@ -137,7 +137,7 @@
               </div>
               <br><br>
             </div>
-          </div>
+          </div> -->
           <!--/ACCOUNT INFORMATION-->
 
 
@@ -147,13 +147,12 @@
               <div class="forms" style="font-family:courier,'new courier';" class="text-muted">
               	<br><br>
               <% if (errors) {%>
-              <ul/>
                 <% for (var i = 0; i < errors.length; i++){ %>
-                <li>
-                  <%=errors[i].msg%>
-                </li>
+                  <% var ms = errors[i].msg%>
+                  <script type="text/javascript">
+                    alert(<%= ms%>);
+                  </script>
                 <%}%>
-              </ul>
               <%}%>
               Sign Up! Or <a href="/signin">Sign In</a>
               <form name="signUpForm" action="/auth/signUp" method="post">

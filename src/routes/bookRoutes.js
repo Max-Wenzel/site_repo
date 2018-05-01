@@ -3,7 +3,7 @@ const bookRouter = express.Router();
 const sql = require('mssql');
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:bookRoutes');
-
+const sessioncheck = require('../routes/sessionCheck');
 function router(nav) {
 
 	// visitor is only able to access dashboard if they are a valid user
@@ -19,7 +19,7 @@ function router(nav) {
 	*/
 
 	// routing to view the homepage
-	bookRouter.route('/')
+	bookRouter.route(sessioncheck, '/')
 		.get((req, res) => {
 /*
 	Inside a function marked as async, you are allowed to place the await keyword
@@ -30,7 +30,8 @@ function router(nav) {
 */
 			// Immediately Invoked Function Expression (IIFE)
 			// There is a lot going on right here. Look up the concepts!
-			(async function query() {
+
+/*			(async function query() {
 
 				const request = new sql.Request();
 				// this returns a promise that sends back some desired result
@@ -45,13 +46,25 @@ function router(nav) {
 				  		dashboard: result.recordset
 				  	}
 				);
-			}());
+			}());*/
+			res.status(404).send("InvalidPage");
 		});
 
 
 	// routing to view a single assistant
 	bookRouter.route('/:id')
-		.get((req, res) => {
+		.get(sessioncheck, (req, res, next) => {
+		if (req.params.id == req.userdata.uid && req.userdata.type == 1)
+		{
+			next();
+		}
+		else
+		{
+			debug("OHNO");
+			res.status(401).send('Auth Failed');
+		}
+	},(req, res) => {
+			debug(req.userdata);
 			(async function query(){
 				
 				const id = req.params.id;
@@ -63,7 +76,9 @@ function router(nav) {
 					'dashboard', {
 						nav,
 				  		title: 'SiTE',
-				  		dashboard: result.recordset
+				  		dashboard: result.recordset,
+				  		id: req.userdata.uid,
+				  		type: req.userdata.type
 			  		}
 				);
 			}());

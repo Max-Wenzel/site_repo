@@ -27,11 +27,23 @@
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <%for (let i=0; i<nav.length; i++) {%>
           <li>
-            <a href="<%=nav[i].link%>"><%=nav[i].title%></a>
+            <% if (type == 2) { %>
+            <li>
+            <a href="<%=nav[1].link%>"><%=nav[1].title%></a>
+            </li>
+            <li>
+            <a href="<%=nav[3].link %>"><%=nav[3].title%></a>
+            </li>
+            <%} else {%>
+            <li>
+            <a href="<%=nav[0].link + '/' + id%>"><%=nav[0].title%></a>
+            </li>
+            <li>
+            <a href="<%=nav[2].link%>"><%=nav[2].title%></a>
+            </li>
+            <%}%>
           </li>
-        <%}%>
       </ul>
     </nav>
   </div>

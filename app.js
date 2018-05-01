@@ -14,6 +14,7 @@ const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+const sessioncheck = require('./src/routes/sessionCheck');
 
 // stuff outside of requires
 const app = express();
@@ -105,6 +106,7 @@ app.use('/signin', signinRouter);
 
 // (req, res) => is equivalent to function(req,res)
 app.get('/', (req, res) => {
+  debug(req.body.token);
   res.render(
   	'index', {
       // objects to be fetched for in index.ejs for nav bar
@@ -116,9 +118,9 @@ app.get('/', (req, res) => {
   		],
   		title: 'SiTE',
       errors: req.session.errors
-  	}
-  );
+  	});
   req.session.errors = null;
+  //debug(req.session.errors);
 });
 
 app.listen(port, () => {
