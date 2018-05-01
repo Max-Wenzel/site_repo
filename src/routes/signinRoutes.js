@@ -15,8 +15,7 @@ function router(nav) {
 				error: req.session.error,
 				found: req.session.found
 			});
-			req.session.found = null;
-			req.session.error = null;
+			req.session.destroy();
 		});
 	return signinRouter;
 }

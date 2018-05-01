@@ -119,7 +119,7 @@ app.get('/', (req, res) => {
   		title: 'SiTE',
       errors: req.session.errors
   	});
-  req.session.errors = null;
+  req.session.destroy();
   //debug(req.session.errors);
 });
 
