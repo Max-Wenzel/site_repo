@@ -1,6 +1,7 @@
 const express = require('express');
 const sql = require('mssql');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:authRoutes');
 
@@ -39,15 +40,21 @@ function router(nav) {
 			else
 			{
 				const request = new sql.Request();
-
-				(async function addUser(){
+				(function addUser(){
 					//let client;
 					try {
-						const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+req.body.password+"');");
+						bcrypt.hash(req.body.password,10, (err, hash) => {
+							if (err){
+								return res.status(500).json({
+									error: err
+								});
+							} else {
+								const results = request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
+							}
+
+						});
 						debug('Connected correctly to server');
-						const user = { username, password };
-						debug(user)
-						
+
 					} catch (err) {
 						debug(err);
 					}
@@ -72,7 +79,7 @@ function router(nav) {
 			}());*/
 			//debug(request.query());
 
-			debug(req.body);
+			//debug(req.body);
 
 			//res.json(req.body);
 		});
