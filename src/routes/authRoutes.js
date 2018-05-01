@@ -1,6 +1,7 @@
 const express = require('express');
 const sql = require('mssql');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:authRoutes');
 
@@ -20,41 +21,53 @@ function router(nav) {
 	*/
 	authRouter.route('/signUp')
 		.post((req, res,next) => {
-			req.check('email', 'Invalid Email ').isEmail();
-			req.check('password').isLength({min: 8}).equals(req.body.confPassword);
+			req.check('username', 'Invalid Email ').isEmail();
+			req.check('password', 'Password must be at least 8 characters').isLength({min: 8});
+			req.check('password', 'Password fields must be equal').equals(req.body.confPassword);
 			var errors = req.validationErrors();
-			if (errors)
-			{
-				req.session.errors = errors;
-			}
-			const { username, password, confpass, type} = req.body;
 			if(req.body.type == 'Student'){
 				var x = 1;
 			}
 			else{
 				var x = 2;
 			}
-			const request = new sql.Request();
+			if(errors)
+			{
+				req.session.errors = errors;
 
-			(async function addUser(){
-				//let client;
-				try {
-					const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+req.body.password+"');");
-					debug('Connected correctly to server');
-					const user = { username, password };
-					debug(user)
+				res.redirect('/');
+			} 
+			else
+			{
+				const request = new sql.Request();
+				(function addUser(){
+					//let client;
+					try {
+						bcrypt.hash(req.body.password,10, (err, hash) => {
+							if (err){
+								return res.status(500).json({
+									error: err
+								});
+							} else {
+								const results = request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
+							}
+
+						});
+						debug('Connected correctly to server');
+
+					} catch (err) {
+						debug(err);
+					}
 					
-				} catch (err) {
-					debug(err);
-				}
-				
 
-				// login and create user, fetched from signup submit button
+					// login and create user, fetched from signup submit button
 
-				
-				
-			}());
+					
+					
+				}());
+				res.redirect('/dashboard');
 
+			}
 			//res.end();
 
 
@@ -66,11 +79,9 @@ function router(nav) {
 			}());*/
 			//debug(request.query());
 
-			debug(req.body);
+			//debug(req.body);
 
 			//res.json(req.body);
-
-			res.redirect('/dashboard');
 		});
 		
 	authRouter.route('/signin')
