@@ -71,7 +71,7 @@ function router(nav) {
 				const request = new sql.Request();
 				const result = 
 					await request.input('id', sql.Int, id)
-						.query('select * from assistants where cid in (SELECT cid FROM course WHERE id = @id)');
+						.query('select * FROM assistants ORDER BY Class');//from assistants where cid in (SELECT cid FROM course WHERE id = @id)');
 				res.render(
 					'dashboard', {
 						nav,
