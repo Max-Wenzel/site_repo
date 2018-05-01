@@ -80,19 +80,21 @@
           </script>
           <hr>
           
-          <!--/show specific TA-->
+          <!--show specific TA-->
             <div class="row">
-              <br>
               <div class="col-md-2 col-sm-3 text-center">
+                <h3><%=courses.class%></h3>
+                <h4><span class="label label-default"><%=courses.full_name%></span></h4>
+                <br>
                 <a class="story-title" href="#"><img alt="" src="http://tachyondecay.net/images/blog/fb_performance.png" style="width:100px;height:100px" class="img-circle"></a>
               </div>
               <div class="col-md-10 col-sm-9">
-                <h3><%=courses.class%></h3>
+                
                 <div class="row">
                   <div class="col-xs-9">
-                    <h4>
-                      <span class="label label-default"><%=courses.full_name%></span>
-                    </h4>
+                    <br>
+                    <br>
+                    <br>
                     <% var times = [
                         courses.MondayS,
                         courses.MondayE,
@@ -105,6 +107,58 @@
                         courses.FridayS, 
                         courses.FridayE
                     ];
+                    
+                    for (let j = 0; j < 9; j+=2) {
+                        if (times[j] != 0) {
+                            var BAMPM = 'AM';
+                            var EAMPM = 'AM';
+
+                            var b = times[j];
+                            var e = times[j+1];
+                            begin = Number(b);
+                            end = Number(e);
+                            
+                            if(begin>=13) {
+                              BAMPM = 'PM';
+                              begin = begin - 12;
+                            }
+                            if(end>=13) {
+                              EAMPM = 'PM';
+                              end = end - 12;
+                            }
+
+                            begin = begin.toString();
+                            begin = begin.replace(".",":");
+                            end = end.toString();
+                            end = end.replace(".",":");
+
+                            if(begin.length <= 2) {
+                              begin = begin + ":00";
+                            } else if(begin.length == 3) {
+                              begin = begin + "0";
+                            }
+
+                            if(end.length <=2) {
+                              end = end + ":00";
+                            }
+                            else if(end.length ==3) {
+                              end = end + "00";
+                            }
+                            begin = begin.substring(0,5);
+                            end = end.substring(0,4);
+
+                            if(begin.charAt(1) != ":"){
+                              begin = begin + "0";
+                            }
+                            if(end.charAt(1) != ":"){
+                              end = end + "0";
+                            }
+
+                            times[j] = begin + " " + BAMPM;
+                            times[j+1] = end + " " + EAMPM;
+                        }
+                    }
+
                     var spots = [
                         "Monday:",
                         courses.Mlocation,
@@ -117,19 +171,17 @@
                         "Friday",
                         courses.Flocation
                     ];
-                    
+
 
                     for (let i = 0; i < 9; i+=2) {
                       if(times[i] != 0){   if(times[i+1] != 0) { %> 
                         <table><tr>
-                          <td><h4>
-                            <u><b><%=spots[i]%></b></u>&ensp;<%=times[i]%>
-                          </h4></td>
-                          <td><h4> - </h4></td>
-                          <td><h4>
-                            <%=times[i+1]%><b>&nbsp;<%=spots[i+1]%></b>
-                          </h4></td>
-                        </tr></table>
+                          <td><h4><b><%=spots[i]%></b></h4></td>
+                          <td><h4>:&ensp;<%=times[i]%> - <%=times[i+1]%></h4></td>
+                          <td><h4><b>&nbsp;<%=spots[i+1]%></b></h4></td>
+                        </tr>
+                      </table>
+
                     <% }}} %>
 
                   </div>
@@ -137,9 +189,10 @@
                 </div>
                 <br><br>
               </div>
-            </div>
+            </div> <!--//show specific TA-->
+
             <hr>
-          <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
+            <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
         </div>
       </div>
    	</div>
@@ -150,7 +203,7 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>

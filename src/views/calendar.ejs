@@ -89,12 +89,17 @@
             showTime();
           </script>
           <br>
-          
-          <!--/body-->
-          <!-- this form allows TA's (only) to edit hours for their classes -->
 
-         <h2>Edit TA Hours</h2>
-         <h5>Input hours with army time, input 0 if no hours for a day</h5>
+
+          <h2>TA Hour Editor</h2>
+          <div class="row">
+            <div class="col-xs-12" style="font-family:courier">
+              <h5>Input or alter hours with army time</h5>
+              <hr>
+            </div>
+          </div>
+
+          <!-- this form allows TA's (only) to edit hours for their classes -->
       	  <br>
           <form method="post" action="/calendar/submit" >
           	<div class="form-field">
@@ -144,17 +149,9 @@
             <div class="form-actions">
             	<input type="submit" value="submit">
             </div>
-            </form>
-
-          	<div id="mainform">
-            	<div class="innerdiv">
-                	<div id="clear"></div>
-                </div>
-                <div id="clear"></div>
-            </div>
+          </form>
                 
-          	<!--/stories-->
-          	<a href="/" class="btn btn-primary pull-right btnNext">Home</a>
+          <a href="/" class="btn btn-primary pull-right btnNext">Home</a>
         </div>
       </div>
    	</div><!--/col-12-->
@@ -166,7 +163,7 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <h5>A project created for CSCI 3308 - Spring 2018 at CU-Boulder</h5>
       </div>
     </div>

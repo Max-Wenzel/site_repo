@@ -121,6 +121,74 @@ a,a:hover {
   border-radius:0;
 }
 
+.panel .forms{
+  font-size: 19px;
+  padding-left: 150px;
+  padding-bottom: 10px;
+  position: relative;
+  bottom: 50px;
+}
+
+.panel .forms input{
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+::placeholder{
+  color: black;
+}
+
+/* unvisited link */
+.panel .forms a:link {
+    color: blue;
+}
+
+/* visited link */
+.panel .forms a:visited {
+    color: purple;
+}
+
+/* mouse over link */
+.panel .forms a:hover {
+    color: gray;
+}
+
+/* selected link */
+.panel .forms a:active {
+    color: blue;
+}
+
+.panel .forms input[type="text"],
+.panel .forms input[type="password"]
+{
+  background-color: #ecf2ef;
+  color: black;
+  padding: 0 10px;
+
+}
+
+.panel .forms #username{
+  width: 425px;
+}
+
+.panel .forms #password{
+  width: 434px;
+}
+
+.panel .forms input[type="submit"]{
+  background-color: #ecf2ef;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  width: 280px;
+  height: 50px;
+}
+
+.panel .forms form input[type="submit"]:hover {
+  background-color: gray;
+}
+
 .thumbnail {
   margin-bottom:8px;
 }
