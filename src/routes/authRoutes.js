@@ -4,6 +4,7 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 // pass in bookRoutes as argument for debug
 const debug = require('debug')('app:authRoutes');
+var passwordHash = require('password-hash');
 
 const authRouter = express.Router();
 
@@ -40,19 +41,45 @@ function router(nav) {
 			else
 			{
 				const request = new sql.Request();
-				(function addUser(){
+				(async function addUser(){
 					//let client;
 					try {
-						bcrypt.hash(req.body.password,10, (err, hash) => {
+						/*bcrypt.hash(req.body.password,10, (err, hash) => {
 							if (err){
 								return res.status(500).json({
 									error: err
 								});
 							} else {
 								const results = request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
+							
 							}
 
-						});
+						});*/
+						const check = await request.query("select * from login where username = '"+req.body.username+"'");
+						if(check.recordset.length == 0){
+						var hash = passwordHash.generate(req.body.password);
+						const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
+						var tuba = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+hash+"'");
+
+						var dataString = tuba.recordset[0].id;
+						var lit = Number(dataString);
+		
+
+						if(tuba.recordset.length > 0){
+							res.redirect('/dashboard/'+lit);
+							}
+						else{
+							res.redirect('/');
+						}
+					}
+					else{
+						req.session.errors = errors;
+
+						res.redirect('/');
+					}
+
+
+
 						debug('Connected correctly to server');
 
 					} catch (err) {
@@ -62,10 +89,11 @@ function router(nav) {
 
 					// login and create user, fetched from signup submit button
 
-					
+			
+						
 					
 				}());
-				res.redirect('/dashboard');
+				
 
 			}
 			//res.end();
@@ -99,7 +127,8 @@ function router(nav) {
 			(async function checkUser(){
 				//let client;
 				try {
-					const result = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+req.body.password+"'");
+					//var hash = passwordHash.generate(req.body.password);
+					const result = await request.query("select id, password from login where username = '"+req.body.username+"'");
 					//var id = await request.query("select id from login where username = '"+req.body.username+"'");
 					debug('Connected correctly to server');
 					const user = { username, password };
@@ -107,15 +136,16 @@ function router(nav) {
 					console.log(result);
 
 					var dataString = result.recordset[0].id;
+					var hashed = result.recordset[0].password;
 					var lit = Number(dataString);
 		
-
-					if(result.recordset.length > 0){
+					if(passwordHash.verify(req.body.password, hashed)){
 						res.redirect('/dashboard/'+lit);
 						}
 					else{
 						res.redirect('/');
 					}
+
 					
 				} catch (err) {
 					debug(err);
