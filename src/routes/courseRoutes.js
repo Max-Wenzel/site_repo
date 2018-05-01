@@ -51,7 +51,9 @@ function router(nav) {
 						nav,
 				  		title: 'SiTE',
 				  		// this is the sql table
-				  		courses: result.recordset
+				  		courses: result.recordset,
+				  		id: req.userdata.uid
+
 				  	}
 				);
 			}());
@@ -79,7 +81,9 @@ function router(nav) {
 					'course', {
 						nav,
 				  		title: 'SiTE',
-				  		courses: result.recordset[0]
+				  		courses: result.recordset[0],
+				  		id: req.userdata.uid,
+
 			  		}
 				);
 			}());

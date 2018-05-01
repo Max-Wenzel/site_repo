@@ -83,7 +83,7 @@ function router(nav) {
 				}
 				}());
 
-				res.redirect('/');
+				res.redirect('back');
 			});
 						
 						

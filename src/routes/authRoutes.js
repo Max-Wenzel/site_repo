@@ -62,12 +62,31 @@ function router(nav) {
 							var hash = passwordHash.generate(req.body.password);
 							const results = await request.query("insert into login (type, username, password) values("+x+",'"+req.body.username+"','"+hash+"');");
 							var tuba = await request.query("select id from login where username = '"+req.body.username+"' and password ='"+hash+"'");
-
+							var lit = ''
 							var dataString = tuba.recordset[0].id;
-							var lit = '/dashboard/' + dataString;
+							if (tuba.recordset[0].type == 1)
+							{
+								lit = '/dashboard/' + dataString;
+							}
+							else
+							{
+								lit = '/calendar/';
+
+							}
 			
 
 							if(tuba.recordset.length > 0){
+								const t = jwt.sign({
+									email: tuba.recordset[0].username,
+									uid: tuba.recordset[0].id,
+									type: tuba.recordset[0].type
+
+									}, "superSecret",{
+									expiresIn: "1h"
+									},
+
+								);
+								req.session.token = t;
 								res.redirect(lit);
 								}
 							else{
@@ -142,6 +161,10 @@ function router(nav) {
 						const login = passwordHash.verify(req.body.password, result.recordset[0].password);
 						//debug(login);
 						var address = '/dashboard/'+result.recordset[0].id;
+						if (result.recordset[0].type == 2)
+						{
+							address = '/calendar'
+						}
 						if (login){
 							const t = jwt.sign({
 								email: req.body.username,
