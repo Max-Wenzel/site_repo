@@ -57,7 +57,7 @@ function router(nav) {
 		});
 
 		calendarRouter.route('/submit')
-		.post((req, res, next) => {
+		.post(sessioncheck, (req, res, next) => {
 			
 			var errors = req.validationErrors();
 			if (errors)

@@ -70,8 +70,7 @@ function router(nav) {
 				const id = req.params.id;
 				const request = new sql.Request();
 				const result = 
-					await request.input('id', sql.Int, id)
-						.query('select * FROM assistants ORDER BY Class');//from assistants where cid in (SELECT cid FROM course WHERE id = @id)');
+					await request.query('select * FROM assistants where cid in (SELECT cid FROM course WHERE id = '+req.userdata.uid+');');
 				res.render(
 					'dashboard', {
 						nav,
